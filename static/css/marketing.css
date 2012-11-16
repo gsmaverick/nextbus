@@ -552,7 +552,7 @@ img {
         left: 0;
         height: 385px;
         width: 270px;
-        -webkit-transition: 0.25s all linear; }
+        -webkit-transition: 0.35s all ease-in-out; }
         #content .phone-container .screens img.left {
           -webkit-transform: translate3d(-270px, 0, 0); }
         #content .phone-container .screens img.right {
@@ -624,6 +624,8 @@ footer {
       -webkit-transition: 0.15s all ease-in; }
       footer .share-links a:hover {
         opacity: 1; }
-      footer .share-links a img {
+      footer .share-links a img.icon {
         width: 48px;
         height: 48px; }
+      footer .share-links a img:not(.icon) {
+        margin: 6px 0; }

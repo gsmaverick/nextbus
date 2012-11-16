@@ -150,7 +150,7 @@ img {
                 height: 385px;
                 width: 270px;
 
-                -webkit-transition: 0.25s all linear;
+                -webkit-transition: 0.35s all ease-in-out;
 
                 &.left {
                     -webkit-transform: translate3d(-270px, 0, 0);
@@ -260,9 +260,16 @@ footer {
             }
 
             img {
-                width: 48px;
-                height: 48px;
-            }
+                &.icon {
+                    width: 48px;
+                    height: 48px;
+                }
+
+                &:not(.icon) {
+                    margin: 6px 0;
+                    //
+                }
+            } // img
         } // a
     } // .share-links
 } // footer
