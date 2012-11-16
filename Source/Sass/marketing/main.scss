@@ -127,7 +127,7 @@ img {
 
 #content {
     width: 760px;
-    margin: 40px auto 0 auto;
+    margin: 20px auto 0 auto;
 
     .phone-container {
         position: relative;
@@ -187,12 +187,13 @@ img {
         }
 
         button {
+            display: block;
             font-size: 18px;
             line-height: 1;
 
             color: #FFF;
 
-            margin: 40px 0 0 0;
+            margin: 40px auto 10px auto;
             padding: 15px 40px;
             outline: 0;
 
@@ -202,7 +203,14 @@ img {
 
             box-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
             background: -webkit-gradient(linear, left top, left bottom, from(lighten(#4795D9, 8%)), to(darken(#4795D9, 7%)));
-        }
+        } // button
+
+        .fine-print {
+            display: block;
+            color: #565753;
+            font-size: 12px;
+            text-align: center;
+        } // .fine-print
     } // .right-col
 } // #content
 

@@ -1,5 +1,5 @@
 import sys, time, urllib2, os
-from flask import Flask, jsonify, Response, render_template, json
+from flask import Flask, jsonify, Response, render_template, json, send_from_directory
 from api import schema, search, stop
 
 app = Flask(__name__)
@@ -88,6 +88,11 @@ def show_about():
 @app.route('/marketing', methods=['GET'])
 def marketing():
     return render_template('marketing.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
