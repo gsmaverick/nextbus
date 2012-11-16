@@ -4,22 +4,18 @@
 __version__ = '1.0.0'
 __all__ = ['schema', 'search', 'stop']
 
+import os
 from sqlalchemy import create_engine
 
-import settings
-
-def create_db(config):
+def create_db():
     """
-        Returns a SQLAlchemy database engine instance based on the given config
-        parameters.
-
-        :param config: Dict of config options for initializing the database.
+        Returns a SQLAlchemy database engine instance based on a default local
+        database connection string or the environment database connection.
     """
 
-    return create_engine(
-        'postgresql://' + config['user'] + ':' + config['password'] + '@' +
-        config['host'] + ':' + config['port'] + '/' + config['database']
-    )
+    db_url = os.environ.get('DATABASE_URL', 'postgresql://postgres:admin@127.0.0.1:5432/nextbus')
+
+    return create_engine(db_url)
 
 # Define a common database connection which can be used for an api method.
-db = create_db(settings.DATABASE['LOCAL'])
+db = create_db()
