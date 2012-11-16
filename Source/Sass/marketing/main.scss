@@ -21,6 +21,10 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    background: white;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+    min-width: 600px;
 }
 
 /*
@@ -40,42 +44,11 @@ body {
 }
 
 /*
- * A better looking default horizontal rule
- */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
  */
 
 img {
     vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
 }
 
 /* ==========================================================================
@@ -88,26 +61,6 @@ textarea {
     color: #000;
     padding: 0.2em 0;
 }
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes
@@ -142,44 +95,6 @@ textarea {
 }
 
 /*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
-
-/*
  * Clearfix: contain floats
  *
  * For modern browsers
@@ -210,89 +125,136 @@ textarea {
     *zoom: 1;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
+#content {
+    width: 760px;
+    margin: 40px auto 0 auto;
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
+    .phone-container {
+        position: relative;
+        float: left;
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
-}
+        .screens {
+            position: absolute;
+            top: 146px;
+            left: 68px;
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
-   ========================================================================== */
+            height: 385px;
+            width: 270px;
 
-@media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+            overflow: hidden;
 
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 385px;
+                width: 270px;
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+                -webkit-transition: 0.25s all linear;
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
+                &.left {
+                    -webkit-transform: translate3d(-270px, 0, 0);
+                }
 
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
+                &.right {
+                    -webkit-transform: translate3d(270px, 0, 0);
+                }
 
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
+                &.no-transition {
+                    -webkit-transition: none !important;
+                }
+            } // img
+        } // .screens
+    } // .phone-container
 
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
+    .right-col {
+        float: left;
+        margin: 120px 0 0 0;
+        padding: 0;
+        width: 360px;
 
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
+        h1 {
+            margin: 40px 0 0 0;
+            font-size: 30px;
+            color: #565753;
+        } // h1
 
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
+        h2 {
+            margin: 40px 0 0 0;
+            color: #565753;
+            font-size: 18px;
+            font-weight: normal;
+        }
 
-    img {
-        max-width: 100% !important;
-    }
+        button {
+            font-size: 18px;
+            line-height: 1;
 
-    @page {
-        margin: 0.5cm;
-    }
+            color: #FFF;
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
+            margin: 40px 0 0 0;
+            padding: 15px 40px;
+            outline: 0;
 
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
-}
+            border-radius: 2px;
+            border: 1px solid darken(#4795D9, 10%);
+            text-shadow: 0 1px 1px darken(#4795D9, 15%);
+
+            box-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
+            background: -webkit-gradient(linear, left top, left bottom, from(lighten(#4795D9, 8%)), to(darken(#4795D9, 7%)));
+        }
+    } // .right-col
+} // #content
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            padding: 0 10px;
+
+            a {
+                font-size: 14px;
+                text-decoration: none;
+                color: #979797;
+                font-weight: bold;
+
+                &:hover {
+                    color: #646464;
+                }
+            } // a
+        } // li
+    } // ul
+
+    .share-links {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+
+        a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 10px;
+            opacity: 0.5;
+            -webkit-transition: 0.15s all ease-in;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            img {
+                width: 48px;
+                height: 48px;
+            }
+        } // a
+    } // .share-links
+} // footer

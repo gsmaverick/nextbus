@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="/static/css/marketing.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="content">
+
+            <div class="phone-container">
+                <img src="/static/img/phone.png" />
+
+                <div class="screens">
+                    <img src="/static/img/home-screen.png"/>
+                    <img src="/static/img/search-screen.png" class="right"/>
+                    <img src="/static/img/details-screen.png" class="right"/>
+                    <img src="/static/img/favourites-screen.png" class="right"/>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <img src="/static/img/nextbus-branding.png" />
+                <h1>Always know when the<br/>next bus arrives!</h1>
+
+                <h2>Quickly and easily find out when the next bus arrives from your phone.  Works on Android and iOS.</h2>
+
+                <button>Coming Soon!</button>
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+        <footer>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Made in HamOnt</a></li>
+            </ul>
+
+            <div class="share-links">
+                <a href="#">
+                    <img src="/static/img/twitter.png" />
+                </a>
+                <a href="#">
+                    <img src="/static/img/facebook.png" />
+                </a>
+            </div>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            var _gaq=[['_setAccount','UA-36387241-1'],['_trackPageview'],['_setDomainName', 'thenextbusapp.com']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <script type="text/javascript">
+            var carousel = 1, items = 4;
+
+            var updateCarousel = function(){
+                console.log('c: ', carousel, ' i: ', items);
+                if (carousel == items){
+                    $('.screens img')
+                        .removeClass('left')
+                        .addClass('right');
+                    carousel = 0;
+                } else {
+                    $('.screens img:nth-child(' + carousel + ')')
+                        .addClass('left');
+                }
+
+                carousel += 1;
+                $('.screens img:nth-child(' + carousel + ')')
+                    .removeClass('right');
+            };
+
+            $(function(){
+                window.setInterval(updateCarousel, 5000);
+            });
+        </script>
+    </body>
+</html>

@@ -85,6 +85,10 @@ def show_about():
     """
     return render_template('about.html')
 
+@app.route('/marketing', methods=['GET'])
+def marketing():
+    return render_template('marketing.html')
+
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
