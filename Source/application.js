@@ -26,7 +26,8 @@ _.extend(Application.prototype, Backbone.Events, {
 
         try {
             Backbone.history.start({
-                pushState: true
+                pushState: true,
+                root: '/app'
             });
         } catch (e) {
             console.error(e);

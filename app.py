@@ -5,8 +5,12 @@ from api import schema, search, stop
 app = Flask(__name__)
 
 @app.route('/')
-@app.route('/stop/<int:stop_id>')
-def index(stop_id=0):
+def index():
+    return render_template('marketing.html')
+
+@app.route('/app')
+@app.route('/app/stop/<int:stop_id>')
+def app_home(stop_id=0):
     """
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
@@ -72,7 +76,8 @@ def show_help():
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
     """
-    return render_template('help.html')
+    #return render_template('help.html')
+    return ''
 
 """
     GET /about
@@ -83,11 +88,8 @@ def show_about():
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
     """
-    return render_template('about.html')
-
-@app.route('/marketing', methods=['GET'])
-def marketing():
-    return render_template('marketing.html')
+    #return render_template('about.html')
+    return ''
 
 @app.route('/favicon.ico')
 def favicon():
