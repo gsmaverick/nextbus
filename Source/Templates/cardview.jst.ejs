@@ -1,0 +1,47 @@
+<div class="all-cards"></div>
+
+<div class="fakeCard">
+    <div class="title">
+        <h2>&nbsp;</h2>
+        <div class="clear clearfix"></div>
+    </div>
+
+    <ul class="timez">
+        <li>
+            <span class="time">&nbsp;</span>
+            <span class="name">&nbsp;</span>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="time">&nbsp;</span>
+            <span class="name">&nbsp;</span>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="time">&nbsp;</span>
+            <span class="name">&nbsp;</span>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="time">&nbsp;</span>
+            <span class="name">&nbsp;</span>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <span class="time">&nbsp;</span>
+            <span class="name">&nbsp;</span>
+            <div class="clear"></div>
+        </li>
+    </ul>
+</div>
+
+<ul class="dots">
+    <li class="active"></li><%= new Array(numSlides_).join('<li></li>') %>
+</ul>
+
+<% if (showSwipeHint_){ %>
+<div class="swipe-hint">
+    <img src="/static/img/swipe-left.png"/>
+    <span>Swipe</span>
+</div>
+<% } %>

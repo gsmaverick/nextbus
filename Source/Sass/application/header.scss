@@ -1,0 +1,199 @@
+// This is the application-wide top header that also contains the settings menu.
+header {
+    position: absolute;
+    top: -165px;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+    height: 209px;
+
+    background: white;
+    border-bottom: 1px solid #CECECE;
+    box-shadow: 0 0 8px #CCC;
+
+    -webkit-transition: 0.25s all ease-in-out;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+    &.open {
+        top: 0;
+    } // &.open
+
+    &.has-back-button {
+        .back.btn {
+            display: block !important;
+        }
+    } // &.has-back-button
+
+    &.has-favourite-button {
+        .favourite.btn {
+            display: block !important;
+        } // .favourite-btn
+
+        .expand.btn {
+            display: none;
+        } // .reveal-btn
+    } // &.has-favourite-button
+
+    .persistent {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        height: 44px;
+        box-shadow: 0 -2px 2px #E6E6E6;
+        background: #FFFFFF;
+
+        .btn {
+            position: absolute;
+            top: 0;
+
+            height: 20px;
+            width: 20px;
+            padding: 12px;
+
+            img {
+                height: 20px;
+                width: 20px;
+                opacity: 0.8;
+            } // img
+
+            &.expand {
+                right: 0;
+            } // .expand-btn
+
+            &.back {
+                display: none;
+                left: 0;
+            } // .back-btn
+
+            &.favourite {
+                display: none;
+                right: 0;
+            }
+        } // .btn
+
+        h1 {
+            display: block;
+            margin: 0;
+            padding: 0;
+
+            position: absolute;
+            top: 12px;
+            left: 44px;
+            right: 44px;
+
+            font-family: 'Chivo', sans-serif;
+            font-size: 20px;
+            line-height: 1;
+            letter-spacing: 1px;
+            color: #323232;
+
+            text-align: center;
+            text-transform: uppercase;
+            text-rendering: optimizeLegibility;
+        } // h1
+    } // .persistent
+
+    h2 {
+        position: relative;
+        margin: 0;
+        padding: 15px 10px;
+
+        border-bottom: 1px solid #E6E6E6;
+
+        font-size: 20px;
+        line-height: 1;
+        color: #323232;
+
+        .actions {
+            position: absolute;
+            top: 0;
+            right: 7px;
+
+            .prev, .next {
+                display: block;
+                float: left;
+
+                margin: 7px 0;
+                padding: 7px 18px;
+
+                border: 1px solid #DDD;
+
+                background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#EDEDED));
+
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.5;
+
+                    img {
+                        opacity: 0.5;
+                    }
+                } // &.disabled
+            } // .prev, .next
+
+            .prev {
+                border-radius: 2px 0 0 2px;
+                border-right: none;
+
+                img {
+                    -webkit-transform: rotate(180deg);
+                }
+            } // .prev
+
+            .next {
+                border-radius: 0 2px 2px 0;
+            } // .next
+        } // .actions
+    } // h2
+
+    .favourites-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            position: relative;
+
+            margin: 0;
+            padding: 5px 10px;
+            border-top: 1px solid #FFFFFF;
+            border-bottom: 1px solid #E6E6E6;
+            background: #FAFAFA;
+            text-shadow: 0 1px 1px #FFFFFF;
+
+            &:nth-child(2) {
+                border-bottom: 0;
+            } // &:nth-child(2)
+
+            .arrow {
+                position: absolute;
+
+                top: 50%;
+                right: 5px;
+                margin-top: -8px;
+
+                opacity: 0.35;
+            } // .arrow
+
+            .number {
+                margin: 3px 5px 0 0;
+            } // .number
+
+            h3 {
+                display: block;
+                margin: 0;
+                padding: 0 16px 0 0;
+
+                font-size: 16px;
+                line-height: 1;
+
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            } // h3
+        } // li
+    } // .favourites-list
+} // header

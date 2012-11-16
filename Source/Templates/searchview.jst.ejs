@@ -1,0 +1,25 @@
+<% _.each(get('results'), function(result){ %>
+    <div class="result" data-stop-code="<%= result['stop_code'] %>">
+        <div class="fake box"></div>
+
+        <div class="box">
+            <span class="name">
+                #<%= result['stop_code'] %> - <%= result['stop_name'] %>
+            </span>
+
+            <div class="numbers">
+                <% _.each(result['routes'], function(route){ %>
+                    <span class="number route-<%= window.NB.Utilities.padRouteNumber(route) %>">
+                        <%= window.NB.Utilities.padRouteNumber(route) %>
+                    </span>
+                <% }); %>
+
+                <div style="clear: both"></div>
+            </div>
+
+            <img src="/static/img/next.png" class="img-next"/>
+        </div>
+    </div>
+<% }); %>
+
+<div class="end-mark"></div>

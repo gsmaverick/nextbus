@@ -1,0 +1,15 @@
+<li data-stop-code="<%= id %>">
+    <h3>#<%= id %> - <%= name %></h3>
+
+    <div class="numbers">
+        <% _.each(routes, function(route){ %>
+            <span class="number route-<%= window.NB.Utilities.padRouteNumber(route) %>">
+                <%= window.NB.Utilities.padRouteNumber(route) %>
+            </span>
+        <% }); %>
+
+        <div style="clear: both"></div>
+    </div>
+
+    <img src="/static/img/next.png" class="arrow"/>
+</li>

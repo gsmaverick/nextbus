@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jasmine Spec Runner</title>
+
+  <link rel="shortcut icon" type="image/png" href="../libs/jasmine-1.2.0/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="../libs/jasmine-1.2.0/jasmine.css">
+  <script type="text/javascript" src="../libs/jasmine-1.2.0/jasmine.js"></script>
+  <script type="text/javascript" src="../libs/jasmine-1.2.0/jasmine-html.js"></script>
+  <script type="text/javascript" src="mock-ajax.js"></script>
+
+  <script type="text/javascript" src="SpecHelper.js"></script>
+
+  <script type="text/javascript" src="../gateway/static/js/libs.js"></script>
+  <script type="text/javascript" src="../gateway/static/js/application.js"></script>
+
+  <script type="text/javascript" src="Specs.js"></script>
+
+
+  <script type="text/javascript">
+    window.onload = function(){
+      jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+      jasmine.getEnv().execute();
+    };
+  </script>
+
+  <style type="text/css">
+    #sandbox {
+        position: absolute;
+        left: -10000px;
+        top: -10000px;
+
+        width: 400px;
+        height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+    <iframe id="sandbox"></iframe>
+</body>
+</html>

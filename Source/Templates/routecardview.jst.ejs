@@ -1,0 +1,21 @@
+<div class="title">
+    <span class="number route-<%= window.NB.Utilities.padRouteNumber(get('number')) %>"><%= window.NB.Utilities.padRouteNumber(get('number')) %></span>
+
+    <h2><%= get('name') %></h2>
+    <div class="clear clearfix"></div>
+</div>
+
+<ul class="timez">
+    <% _.each(get('times'), function(time){ %>
+        <li>
+            <span class="time" data-arrival-time="<%= time.arrival %>">
+                <%= timeUntilToString(time.arrival) %>
+            </span>
+            <span class="name">
+                <%= stripEndpoint(time.endpoint) %>
+            </span>
+
+            <div class="clear"></div>
+        </li>
+    <% }); %>
+</ul>
