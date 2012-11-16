@@ -13,7 +13,7 @@ def create_db():
         database connection string or the environment database connection.
     """
 
-    db_url = os.environ.get('DATABASE_URL', 'postgresql://postgres:admin@127.0.0.1:5432/nextbus')
+    db_url = os.environ.get('HEROKU_POSTGRESQL_GRAY_URL', 'postgresql://postgres:admin@127.0.0.1:5432/nextbus')
 
     return create_engine(db_url)
 
