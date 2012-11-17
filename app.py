@@ -98,10 +98,13 @@ def favicon():
 
 if __name__ == '__main__':
     try:
+        # Adjust the timezone to Eastern to ensure that date/time calculations
+        # are accurate for Hamilton times.  Non-UNIX systems don't support
+        # time.tzset() so this hack doesn't work on those systems.
         os.environ['TZ'] = 'US/Eastern'
         time.tzset()
     except:
-        print "error"
+        print "Could not set time zone."
 
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
