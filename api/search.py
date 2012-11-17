@@ -12,7 +12,25 @@ def searchByLatLon(lat, lon, num=5):
         :param lon: Longitude coordinate to search near.
         :param num: The number of possible nearby stops to return.
     """
-    pass
+    conn = db.connect()
+
+    query = text('\
+        SELECT * FROM \
+            (SELECT id, name, code, lat, lon, \
+                (6371 * acos(cos(radians(:lat)) * cos(radians(lat)) * \
+                                     cos(radians(lon) - radians(:lon)) + \
+                                     sin(radians(:lat)) * sin(radians(lat)))) \
+        AS distance \
+        FROM stops) AS distances \
+        WHERE distance < 5 \
+        ORDER BY distance \
+        OFFSET 0 LIMIT :limit'
+    )
+
+    result = conn.execute(query, lat=lat, lon=lon, limit=num)
+
+    return [_stopNameResultDict(s, conn) for s in result]
+
 
 def searchByStopName(name, num=25):
     """

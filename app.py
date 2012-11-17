@@ -59,10 +59,18 @@ def show_stop(stop_code):
     resp = Response(json.dumps(result), status=200, mimetype='application/json')
     return resp
 
-@app.route('/api/search/<string:query>', methods=['GET', 'POST'])
+@app.route('/api/search/text/<string:query>', methods=['GET', 'POST'])
 def do_search(query):
     query = urllib2.unquote(query)
     result = search.searchByStopName(query, 10)
+
+    resp = Response(json.dumps(result), status=200, mimetype='application/json')
+    return resp
+
+@app.route('/api/search/geo/<string:query>', methods=['GET', 'POST'])
+def do_geo_search(query):
+    query = urllib2.unquote(query).split('|')
+    result = search.searchByLatLon(query[0], query[1])
 
     resp = Response(json.dumps(result), status=200, mimetype='application/json')
     return resp
