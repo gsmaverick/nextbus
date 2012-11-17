@@ -57,6 +57,8 @@ var makeViewSpy = function(name, methods, fakeDiv){
 };
 
 beforeEach(function(){
+    window.mixpanel = jasmine.createSpyObj('mixpanel', ['track', 'register']);
+
     var iframe = document.querySelector('#sandbox');
     var childDiv = document.createElement('div');
 

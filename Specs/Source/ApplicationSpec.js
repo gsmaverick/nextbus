@@ -14,7 +14,7 @@ describe('Application', function(){
         $router = jasmine.createSpy('Router');
         spyOn(window.NB, 'Router').andReturn($router);
 
-        $userModel = jasmine.createSpyObj('UserModel', ['fetch']);
+        $userModel = jasmine.createSpyObj('UserModel', ['fetch', 'get']);
         spyOn(window.NB, 'UserModel').andReturn($userModel);
 
         appObj = new Application();

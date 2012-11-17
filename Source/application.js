@@ -15,8 +15,6 @@ var Application = function(){
     });
 
     this.router_ = new window.NB.Router();
-
-    mixpanel.track('AppLoad');
 };
 
 _.extend(Application.prototype, Backbone.Events, {
@@ -26,12 +24,14 @@ _.extend(Application.prototype, Backbone.Events, {
 
         try {
             Backbone.history.start({
-                pushState: true,
                 root: '/app'
             });
         } catch (e) {
             console.error(e);
         }
+
+        mixpanel.register({'uuid': this.user_.get('userId')});
+        mixpanel.track('AppLoad');
     },
 
     /**
