@@ -20,6 +20,7 @@
 
   <script type="text/javascript">
     window.onload = function(){
+      jasmine.getEnv().specFilter = specFilter;
       jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
       jasmine.getEnv().execute();
     };
