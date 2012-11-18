@@ -1,18 +1,23 @@
 .index {
-    /*height: 100%;*/
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 
+    &.locating {
+        .find-location button img {
+            -webkit-animation: locating 1.5s infinite linear;
+        }
+    } // &.locating
+
     h1 {
+        margin: 15px 0;
         color: #434343;
         font-size: 20px;
 
         text-shadow: 0 0 4px #FFF;
         text-transform: uppercase;
-
         text-align: center;
     } // h1
 

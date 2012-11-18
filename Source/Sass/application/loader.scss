@@ -25,17 +25,3 @@
         } // @for $i from 2 through 5
     } // span
 } // .loader
-
-@-webkit-keyframes loader {
-  0% {
-    background: #CCC;
-  }
-
-  20% {
-    background: #FFF;
-  }
-
-  100% {
-    background: #FFF;
-  }
-} // @-webkit-keyframes loader

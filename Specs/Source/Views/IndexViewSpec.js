@@ -50,7 +50,64 @@ describe('IndexView', function(){
 
             $('button', Sandbox).trigger('click');
 
-            expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
+            expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalledWith(
+                view.geoSuccessEvt_, view.geoErrorEvt_);
+            expect(view.el.classList.contains('locating')).toBeTruthy();
         });
+
+        describe('geolocation response', function(){
+            beforeEach(function(){
+                spyOn(navigator.geolocation, 'getCurrentPosition');
+                spyOn(window, 'alert');
+
+                view.currentLocationEvt_();
+            });
+
+            it('should alert the right error message for code 1', function(){
+                view.geoErrorEvt_({
+                    code: 1,
+                    message: 'test'
+                });
+
+                expect(window.alert).toHaveBeenCalledWith(
+                    'Permission denied: Could not acquire current location.');
+                expect(mixpanel.track).toHaveBeenCalledWith('geoError', {
+                    code: 1,
+                    message: 'test'
+                });
+                expect(view.el.classList.contains('locating')).toBeFalsy();
+            });
+
+            it('should alert the right error message for code 2', function(){
+                var msg = 'Could not determine current location.  Ensure '
+                    + 'location services are enabled.';
+
+                view.geoErrorEvt_({
+                    code: 2,
+                    message: 'test'
+                });
+
+
+                expect(window.alert).toHaveBeenCalledWith(msg);
+                expect(mixpanel.track).toHaveBeenCalledWith('geoError', {
+                    code: 2,
+                    message: 'test'
+                });
+                expect(view.el.classList.contains('locating')).toBeFalsy();
+            });
+
+            it('should handle a successful geolocation call', function(){
+                view.geoSuccessEvt_({
+                    coords: {
+                        latitude: 1,
+                        longitude: 1
+                    }
+                });
+
+                expect(window.app.router_.navigate).toHaveBeenCalledWith(
+                    'search/1%7C1', {trigger: true});
+                expect(view.el.classList.contains('locating')).toBeFalsy();
+            });
+        }); // describe('geolocation response')
     }); // describe('user actions')
 }); // describe('IndexView')

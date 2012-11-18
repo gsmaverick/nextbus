@@ -1,6 +1,4 @@
 window.NB.SearchModel = Backbone.Model.extend({
-    idAttribute: 'query',
-
     urlRoot: '/api/search',
 
     defaults: {
@@ -9,6 +7,19 @@ window.NB.SearchModel = Backbone.Model.extend({
          * a geolocation search.
          */
         query: null
+    },
+
+    /**
+     * @type {Boolean} Whether this model has been loaded with data from the
+     * server yet.
+     */
+    loaded: false,
+
+    url: function(){
+        var query = decodeURIComponent(this.get('query')),
+            ext = query.indexOf('|') !== -1 ? 'geo' : 'text';
+
+        return [this.urlRoot, ext, this.get('query')].join('/');
     },
 
     parse: function(response){

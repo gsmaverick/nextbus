@@ -45,6 +45,29 @@ body {
   border-radius: 2px;
   text-align: center; }
 
+@-webkit-keyframes locating {
+  0% {
+    -webkit-transform: rotate(53deg);
+    opacity: 0.35; }
+
+  50% {
+    -webkit-transform: rotate(233deg);
+    opacity: 0.65; }
+
+  100% {
+    -webkit-transform: rotate(413deg);
+    opacity: 0.35; } }
+
+@-webkit-keyframes loader {
+  0% {
+    background: #CCC; }
+
+  20% {
+    background: #FFF; }
+
+  100% {
+    background: #FFF; } }
+
 header {
   position: absolute;
   top: -165px;
@@ -527,13 +550,15 @@ header {
   padding-left: 29px; }
 
 .index {
-  /*height: 100%;*/
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0; }
+  .index.locating .find-location button img {
+    -webkit-animation: locating 1.5s infinite linear; }
   .index h1 {
+    margin: 15px 0;
     color: #434343;
     font-size: 20px;
     text-shadow: 0 0 4px #FFF;
@@ -704,13 +729,3 @@ header {
       -webkit-animation-delay: 1.8s; }
     .loader span:nth-of-type(5) {
       -webkit-animation-delay: 2.4s; }
-
-@-webkit-keyframes loader {
-  0% {
-    background: #CCC; }
-
-  20% {
-    background: #FFF; }
-
-  100% {
-    background: #FFF; } }

@@ -1,0 +1,32 @@
+// All animations used in the application are in this file.
+
+@-webkit-keyframes locating {
+    0% {
+        -webkit-transform: rotate(53deg);
+        opacity: 0.35;
+    }
+
+    50% {
+        -webkit-transform: rotate(233deg);
+        opacity: 0.65;
+    }
+
+    100% {
+        -webkit-transform: rotate(413deg);
+        opacity: 0.35;
+    }
+} // @-webkit-keyframes locating
+
+@-webkit-keyframes loader {
+  0% {
+    background: #CCC;
+  }
+
+  20% {
+    background: #FFF;
+  }
+
+  100% {
+    background: #FFF;
+  }
+} // @-webkit-keyframes loader
