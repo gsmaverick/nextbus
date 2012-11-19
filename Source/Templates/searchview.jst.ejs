@@ -22,4 +22,10 @@
     </div>
 <% }); %>
 
-<div class="end-mark"></div>
+<% if (!get('results') || get('results').length == 0) { %>
+    <h3 class="no-results">
+        No results found for <span class="query"><%= queryString() %>.</span>
+    </h3>
+<% } else { %>
+    <div class="end-mark"></div>
+<% } %>

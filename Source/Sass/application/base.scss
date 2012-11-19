@@ -62,3 +62,14 @@ body {
     border-radius: 2px;
     text-align: center;
 } // .number
+
+h3.error {
+    display: block;
+    margin: 0;
+    padding: 10px;
+
+    text-align: center;
+    color: #636363;
+    font-size: 16px;
+    text-shadow: 0 1px 1px #FFFFFF;
+} // h3.error

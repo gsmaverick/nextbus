@@ -34,7 +34,12 @@ var TestResponses = {
             success: {
                 status: 200,
                 responseText: '[{"routes": [5, 51], "stop_name": "UNIVERSITY opposite LIFE SCIENCES", "stop_code": 1183}, {"routes": [5, 51], "stop_name": "UNIVERSITY at FORSYTH", "stop_code": 2650}, {"routes": [5], "stop_name": "UNIVERSITY PLAZA PLATFORM 1", "stop_code": 1312}, {"routes": [1], "stop_name": "UNIVERSITY opposite LIFE SCIENCES", "stop_code": 1097}, {"routes": [1, 5, 51], "stop_name": "UNIVERSITY at LIFE SCIENCES", "stop_code": 2748}, {"routes": [5, 51], "stop_name": "UNIVERSITY at FORSYTH", "stop_code": 1344}, {"routes": [44], "stop_name": "GARNER at REDEEMER UNIVERSITY", "stop_code": 4467}, {"routes": [10], "stop_name": "UNIVERSITY PLAZA PLATFORM 2", "stop_code": 1312}, {"routes": [5, 51], "stop_name": "STERLING at UNIVERSITY", "stop_code": 1182}, {"routes": [1], "stop_name": "STERLING at UNIVERSITY", "stop_code": 1119}, {"routes": [1], "stop_name": "STERLING at UNIVERSITY", "stop_code": 1097}, {"routes": [5, 51], "stop_name": "STERLING at UNIVERSITY", "stop_code": 1119}]'
-           }
+            },
+
+            error: {
+                status: 500,
+                responseText: ''
+            }
         }
     }
 };

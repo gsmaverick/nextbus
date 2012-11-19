@@ -1,3 +1,7 @@
+/**
+ * SearchView shows a list of search results or a message indicating why there
+ * are no search results.
+ */
 window.NB.SearchView = Backbone.View.extend({
     className: 'search',
 
@@ -11,6 +15,9 @@ window.NB.SearchView = Backbone.View.extend({
     model: null,
 
     initialize: function(){
+        // For easier unit testing.
+        this.fetchError_ = this.fetchError_.bind(this);
+
         this.model.on('reset change', this.render, this);
     },
 
@@ -18,7 +25,10 @@ window.NB.SearchView = Backbone.View.extend({
         if (!this.model.loaded){
             this.el.innerHTML = window.JST['Templates/loader']();
 
-            this.model.fetch();
+            this.model.fetch({
+                error: this.fetchError_
+            });
+
             return this;
         }
 
@@ -34,11 +44,38 @@ window.NB.SearchView = Backbone.View.extend({
         Backbone.View.prototype.remove.apply(this, arguments);
     },
 
+    /**
+     * Navigates the application to the right url after a search result has been
+     * clicked.
+     *
+     * @param {Event}
+     */
     clickResultEvt_: function(evt){
         var code = evt.currentTarget.getAttribute('data-stop-code');
 
         app.getRouter().navigate('stop/' + code, {
             trigger: true
         });
+
+        mixpanel.track('searchResultSelected', {
+            code: code
+        });
+    },
+
+    /**
+     * Handles a server error when fetching search results.
+     *
+     * @param {SearchModel} model
+     * @param {XMLHttpRequest} xhr
+     * @param {Object} options
+     */
+    fetchError_: function(model, xhr, options){
+        if (xhr.readyState === 4){
+            this.el.innerHTML = window.JST['Templates/servererror']();
+
+            mixpanel.track('searchServerError', {
+                query: decodeURIComponent(model.get('query'))
+            });
+        }
     }
 });

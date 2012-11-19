@@ -10,6 +10,20 @@
         border-bottom: 1px solid #DFDFDF;
     } // .end-mark
 
+    .no-results {
+        display: block;
+        margin: 0;
+        padding: 10px;
+
+        color: #636363;
+        font-size: 16px;
+        text-shadow: 0 1px 1px #FFFFFF;
+
+        .query {
+            color: #434343;
+        }
+    } // .no-results
+
     .result {
         position: relative;
         margin: 0 0 20px 0;

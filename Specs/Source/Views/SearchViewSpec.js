@@ -8,8 +8,8 @@ describe('SearchView', function(){
             query: 'university'
         });
 
-        spyOn(model, 'on');
-        spyOn(model, 'off');
+        spyOn(model, 'on').andCallThrough();
+        spyOn(model, 'off').andCallThrough();
         spyOn(model, 'fetch').andCallThrough();
 
         view = new window.NB.SearchView({
@@ -36,7 +36,20 @@ describe('SearchView', function(){
         });
 
         it('should fetch the model', function(){
-            expect(model.fetch).toHaveBeenCalled();
+            expect(model.fetch).toHaveBeenCalledWith({
+                error: view.fetchError_
+            });
+        });
+
+        it('should show an error message', function(){
+            request = mostRecentAjaxRequest();
+            request.response(TestResponses.models.search.error);
+
+            //Sandbox.appendChild(view.render().el);
+
+            expect(view.el.querySelector('.error')).not.toBeNull();
+            expect(mixpanel.track).toHaveBeenCalledWith(
+                'searchServerError', {query: 'university'});
         });
 
         describe('loaded events', function(){
@@ -80,6 +93,8 @@ describe('SearchView', function(){
                 expect(router.navigate).toHaveBeenCalledWith('stop/1183', {
                     trigger: true
                 });
+                expect(mixpanel.track).toHaveBeenCalledWith(
+                    'searchResultSelected', {code: '1183'});
             });
         }); // describe('loaded events')
 

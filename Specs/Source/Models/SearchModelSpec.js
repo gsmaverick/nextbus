@@ -45,4 +45,18 @@ describe('SearchModel', function(){
             expect(model.loaded).toBeTruthy();
         });
     }); // describe('querying')
+
+    describe('query string', function(){
+        it('should return current location', function(){
+            model.set('query', '1|1');
+
+            expect(model.queryString()).toEqual('current location');
+        });
+
+        it('should return the query', function(){
+            model.set('query', 'university');
+
+            expect(model.queryString()).toEqual('university');
+        });
+    }); // describe('query string')
 }); // describe('SearchModel')

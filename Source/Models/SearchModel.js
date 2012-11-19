@@ -28,5 +28,11 @@ window.NB.SearchModel = Backbone.Model.extend({
         return {
             results: response
         };
+    },
+
+    queryString: function(){
+        var query = decodeURIComponent(this.get('query'));
+
+        return query.indexOf('|') !== -1 ? 'current location' : query;
     }
 });
