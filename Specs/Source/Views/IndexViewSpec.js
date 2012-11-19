@@ -20,9 +20,13 @@ describe('IndexView', function(){
             $('form', Sandbox).trigger('submit');
 
             var router = window.app.getRouter();
-            expect(router.navigate).toHaveBeenCalledWith(
-                'stop/1183', {trigger: true}
-            );
+            expect(router.navigate).toHaveBeenCalledWith('stop/1183', {
+                trigger: true
+            });
+            expect(mixpanel.track).toHaveBeenCalledWith('formSubmit', {
+                action: 'stop',
+                query: '1183'
+            });
         });
 
         it('should navigate to a search result', function(){
@@ -31,18 +35,22 @@ describe('IndexView', function(){
             $('form', Sandbox).trigger('submit');
 
             var router = window.app.getRouter();
-            expect(router.navigate).toHaveBeenCalledWith(
-                'search/university', {trigger: true}
-            );
+            expect(router.navigate).toHaveBeenCalledWith('search/university', {
+                trigger: true
+            });
+            expect(mixpanel.track).toHaveBeenCalledWith('formSubmit', {
+                action: 'search',
+                query: 'university'
+            });
 
             $('.input-holder input', Sandbox).val('11844');
 
             $('form', Sandbox).trigger('submit');
 
             var router = window.app.getRouter();
-            expect(router.navigate).toHaveBeenCalledWith(
-                'search/11844', {trigger: true}
-            );
+            expect(router.navigate).toHaveBeenCalledWith('search/11844', {
+                trigger: true
+            });
         });
 
         it('should initiate a geolocation request', function(){
@@ -107,6 +115,7 @@ describe('IndexView', function(){
                 expect(window.app.router_.navigate).toHaveBeenCalledWith(
                     'search/1%7C1', {trigger: true});
                 expect(view.el.classList.contains('locating')).toBeFalsy();
+                expect(mixpanel.track).toHaveBeenCalledWith('geoSuccess');
             });
         }); // describe('geolocation response')
     }); // describe('user actions')

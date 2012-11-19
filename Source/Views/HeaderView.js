@@ -1,3 +1,7 @@
+/**
+ * HeaderView is the top header bar that persists across the entire application
+ * as well as the favourites lists.
+ */
 window.NB.HeaderView = Backbone.View.extend({
     tagName: 'header',
 
@@ -88,6 +92,8 @@ window.NB.HeaderView = Backbone.View.extend({
      */
     expandHeaderEvt_: function(){
         this.el.classList.toggle('open');
+
+        mixpanel.track('openHeader');
     },
 
     /**

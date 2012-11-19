@@ -1,3 +1,8 @@
+/**
+ * IndexView is the main index page of the application.  It lets the user enter
+ * a stop code/name in a form or find stop nearby via geolocation.  It also
+ * displays the footer contents.
+ */
 window.NB.IndexView = Backbone.View.extend({
     className: 'index',
 
@@ -46,6 +51,11 @@ window.NB.IndexView = Backbone.View.extend({
             trigger: true
         });
 
+        mixpanel.track('formSubmit', {
+            action: url,
+            query: inputVal
+        });
+
         return false;
     },
 
@@ -62,6 +72,8 @@ window.NB.IndexView = Backbone.View.extend({
         app.getRouter().navigate('search/' + encodeURIComponent(param), {
             trigger: true
         });
+
+        mixpanel.track('geoSuccess');
     },
 
     /**
