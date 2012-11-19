@@ -132,6 +132,7 @@ img {
     .phone-container {
         position: relative;
         float: left;
+        margin: -120px 0 0 0;
 
         .screens {
             position: absolute;
@@ -150,18 +151,8 @@ img {
                 height: 385px;
                 width: 270px;
 
-                -webkit-transition: 0.35s all ease-in-out;
-
-                &.left {
-                    -webkit-transform: translate3d(-270px, 0, 0);
-                }
-
                 &.right {
-                    -webkit-transform: translate3d(270px, 0, 0);
-                }
-
-                &.no-transition {
-                    -webkit-transition: none !important;
+                    left: 270px;
                 }
             } // img
         } // .screens
@@ -169,7 +160,7 @@ img {
 
     .right-col {
         float: left;
-        margin: 120px 0 0 0;
+        margin: 40px 0 0 0;
         padding: 0;
         width: 360px;
 
@@ -190,19 +181,33 @@ img {
             display: block;
             font-size: 18px;
             line-height: 1;
-
             color: #FFF;
 
             margin: 40px auto 10px auto;
             padding: 15px 40px;
             outline: 0;
-
-            border-radius: 2px;
             border: 1px solid darken(#4795D9, 10%);
+
+            -webkit-border-radius: 2px;
+               -moz-border-radius: 2px;
+                    border-radius: 2px;
+
+
             text-shadow: 0 1px 1px darken(#4795D9, 15%);
 
-            box-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
-            background: -webkit-gradient(linear, left top, left bottom, from(lighten(#4795D9, 8%)), to(darken(#4795D9, 7%)));
+            -webkit-box-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
+                -moxbox-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
+                    box-shadow: inset 0 3px 2px -2px lighten(#4795D9, 30%);
+
+            // Colours: lighten(#4795D9, 8%)) => darken(#4795D9, 7%))
+            background: #69a8e0;
+            background: -moz-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#69a8e0), color-stop(100%,#2b84d1));
+            background: -webkit-linear-gradient(top, #69a8e0 0%,#2b84d1 100%);
+            background: -o-linear-gradient(top, #69a8e0 0%,#2b84d1 100%);
+            background: -ms-linear-gradient(top, #69a8e0 0%,#2b84d1 100%);
+            background: linear-gradient(to bottom, #69a8e0 0%,#2b84d1 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#69a8e0', endColorstr='#2b84d1',GradientType=0 );
         } // button
 
         .fine-print {

@@ -9,6 +9,11 @@ guard 'sprockets', :destination => 'static/js', :minify => 'yes', :asset_paths =
   watch(%r{^Source/**/.*\.ejs$})
 end
 
+# Build the marketing js file.
+guard 'sprockets', :destination => 'static/js', :minify => 'yes', :asset_paths => ['Source'], :root_file => 'Source/marketing.js' do
+  watch(%r{^Source/.*\.js$})
+end
+
 # Build the jasmine specs for the application.
 guard 'sprockets', :destination => 'Specs', :asset_paths => ['Specs/Source'], :root_file => 'Specs/Source/Specs.js' do
   watch(%r{^Specs/Source/**/.*\.js$})
@@ -26,4 +31,3 @@ end
 guard 'sprockets', :destination => 'static/css', :minify => 'yes', :asset_paths => ['Source/Sass'], :root_file => 'Source/Sass/marketing.css.scss' do
   watch(%r{^Source/Sass/marketing/**/.*\.scss$})
 end
-

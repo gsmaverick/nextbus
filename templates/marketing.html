@@ -47,9 +47,9 @@
 
         <footer>
             <ul>
-                <li><a href="http://thenextbus.tumblr.com/">Blog</a></li>
-                <li><a href="/help">Help</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="http://blog.thenextbusapp.com/">Blog</a></li>
+                <li><a href="/help">Help</a></li>
             </ul>
 
             <div class="share-links">
@@ -67,39 +67,13 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="/static/js/marketing.js"></script>
 
         <script>
             var _gaq=[['_setAccount','UA-36387241-1'],['_trackPageview'],['_setDomainName', 'thenextbusapp.com']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-
-        <script type="text/javascript">
-            var carousel = 1, items = 4;
-
-            var updateCarousel = function(){
-                console.log('c: ', carousel, ' i: ', items);
-                if (carousel == items){
-                    $('.screens img')
-                        .removeClass('left')
-                        .addClass('right');
-                    carousel = 0;
-                } else {
-                    $('.screens img:nth-child(' + carousel + ')')
-                        .addClass('left');
-                }
-
-                carousel += 1;
-                $('.screens img:nth-child(' + carousel + ')')
-                    .removeClass('right');
-            };
-
-            $(function(){
-                window.setInterval(updateCarousel, 5000);
-            });
         </script>
     </body>
 </html>
