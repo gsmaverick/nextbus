@@ -1,3 +1,7 @@
+/**
+ * StopView shows a specific stop's routes and stop times by creating a list of
+ * Card subviews to show each individual route.
+ */
 window.NB.StopView = Backbone.View.extend({
     className: 'stop',
 

@@ -100,6 +100,12 @@ describe('CardView', function(){
             Sandbox.appendChild(view.render().el);
         });
 
+        it('should register a mixpanel event', function(){
+            view.$('.card.current .title').trigger('swipeLeft');
+
+            expect(mixpanel.track).toHaveBeenCalledWith('swipe');
+        });
+
         it('should not swipe right past the first slide', function(){
             view.$('.card.current .timez').trigger('swipeRight');
 

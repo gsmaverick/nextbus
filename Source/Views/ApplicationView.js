@@ -1,3 +1,8 @@
+/**
+ * ApplicationView is the main container for all the views that make up the
+ * application.  It handles creating, rendering and removing application views
+ * and cleans up after each view.
+ */
 window.NB.ApplicationView = Backbone.View.extend({
     /**
      * @type {Element} Attach this view to the application element already in
@@ -38,6 +43,9 @@ window.NB.ApplicationView = Backbone.View.extend({
         });
     },
 
+    /**
+     * @param {String} stopId Four digit stop code that should be displayed.
+     */
     showStopCard: function(stopId){
         var stopModel = new window.NB.StopModel({
             id: stopId
@@ -54,9 +62,12 @@ window.NB.ApplicationView = Backbone.View.extend({
         });
     },
 
-    showSearchCard: function(search_term){
+    /**
+     * @param {String} searchTerm Query string to search for.
+     */
+    showSearchCard: function(searchTerm){
         var searchModel = new window.NB.SearchModel({
-            query: search_term
+            query: searchTerm
         });
 
         var view = new window.NB.SearchView({

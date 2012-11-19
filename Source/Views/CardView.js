@@ -108,6 +108,8 @@ window.NB.CardView = Backbone.View.extend({
             this.currentUser_.set('hasSwiped', true);
             this.$('.swipe-hint').hide();
         }
+
+        mixpanel.track('swipe');
     },
 
     /**
