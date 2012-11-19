@@ -344,6 +344,7 @@ h2 {
       border-radius: 0 2px 2px 0; }
 
 .favourites-list {
+  position: relative;
   list-style: none;
   margin: 0;
   padding: 0; }
@@ -375,6 +376,60 @@ h2 {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }
+  .favourites-list li.empty {
+    background: white;
+    box-sizing: border-box;
+    height: 115px;
+    width: 286px;
+    padding: 20px 0;
+    margin: 0 auto; }
+    .favourites-list li.empty .left {
+      float: left;
+      width: 200px;
+      margin: 0 20px 0 0; }
+      .favourites-list li.empty .left h3 {
+        margin: 0;
+        padding: 0 0 6px 0;
+        font-size: 18px;
+        line-height: 1; }
+      .favourites-list li.empty .left h4 {
+        margin: 0;
+        padding: 0;
+        color: #747474;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.5; }
+    .favourites-list li.empty .bubble {
+      position: relative;
+      float: left;
+      margin: 0;
+      height: 64px;
+      width: 64px;
+      border-radius: 60px;
+      background: rgba(142, 145, 128, 0.07);
+      border: 1px solid rgba(92, 95, 78, 0.1);
+      box-shadow: 0 0 5px 2px #F6F6F6;
+      overflow: hidden; }
+      .favourites-list li.empty .bubble .inner {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        top: 3px;
+        left: 3px;
+        z-index: 10;
+        background: transparent;
+        border-radius: 30px;
+        border: 1px solid rgba(92, 95, 78, 0.02);
+        overflow: hidden;
+        box-shadow: inset 0 0 15px rgba(92, 95, 78, 0.45); }
+      .favourites-list li.empty .bubble img {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: 56px;
+        width: 56px;
+        border-radius: 100px;
+        z-index: 2; }
 
 .stop .stop-title {
   display: block;

@@ -1,5 +1,6 @@
-import sys, time, urllib2, os
-from flask import Flask, jsonify, Response, render_template, json, send_from_directory
+import sys, time, urllib2, os, re
+from flask import Flask, jsonify, Response, render_template, json, send_from_directory, request
+from twilio.rest import TwilioRestClient
 from api import schema, search, stop
 
 app = Flask(__name__)
@@ -84,8 +85,7 @@ def show_help():
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
     """
-    #return render_template('help.html')
-    return ''
+    return render_template('help.html', header=True)
 
 """
     GET /about
@@ -96,13 +96,13 @@ def show_about():
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
     """
-    #return render_template('about.html')
-    return ''
+    return render_template('about.html', header=True)
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 if __name__ == '__main__':
     try:
