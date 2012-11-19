@@ -1,6 +1,6 @@
 import sys, time, urllib2, os, re
 from flask import Flask, jsonify, Response, render_template, json, send_from_directory, request
-from twilio.rest import TwilioRestClient
+#from twilio.rest import TwilioRestClient
 from api import schema, search, stop
 
 app = Flask(__name__)
@@ -103,6 +103,22 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+"""
+@app.route('/send_to_phone', methods=['POST'])
+def send_to_phone():
+    message = 'Find next bus times by going to http://www.thenextbusapp.com!'
+    account = os.environ.get('TWILIO_ACCOUNT_SID')
+    token = os.environ.get('TWILIO_AUTH_TOKEN')
+
+    client = TwilioRestClient(account, token)
+
+    number = request.form['number'].strip('()-')
+
+    #if
+    #message = client.sms.messages.create(to='2896840349', from_='12892041646', body=message)
+
+    return request.form['number']
+"""
 
 if __name__ == '__main__':
     try:
