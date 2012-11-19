@@ -57,7 +57,6 @@ describe('FavouritesListView', function(){
             Sandbox.appendChild(view.render().el);
         });
 
-
         it('should set the current page and number of pages', function(){
             expect(view.numPages_).toEqual(3);
             expect(view.currentPage_).toEqual(0);
@@ -74,13 +73,25 @@ describe('FavouritesListView', function(){
             expect(view.$('.next').hasClass('disabled')).toBeTruthy();
         });
 
-        it('should disable the next page button on render', function(){
-            model.set('favourites', []);
-            view.render();
+        describe('empty favourites', function(){
+            beforeEach(function(){
+                model.set('favourites', []);
+                view.render();
+            });
 
-            expect(view.el.querySelector('.next')).not.toBeNull();
-            expect(view.$('.next').hasClass('disabled')).toBeTruthy();
-        });
+            it('should disable the next page button on render', function(){
+                expect(view.el.querySelector('.next')).not.toBeNull();
+                expect(view.$('.next').hasClass('disabled')).toBeTruthy();
+            });
+
+            it('should render an empty favourites message', function(){
+                var h3 = view.el.querySelector('li.empty h3');
+
+                expect(view.el.querySelector('li.empty')).not.toBeNull();
+                expect(view.el.querySelector('.bubble')).not.toBeNull();
+                expect(h3.innerHTML).toContain('No favourited stops.');
+            });
+        }); // describe('empty favourites')
 
         describe('events', function(){
             var prev, next;

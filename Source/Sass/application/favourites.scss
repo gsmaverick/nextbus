@@ -56,6 +56,7 @@ h2 {
 } // h2
 
 .favourites-list {
+    position: relative;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -102,4 +103,74 @@ h2 {
             text-overflow: ellipsis;
         } // h3
     } // li
+
+    li.empty {
+        background: white;
+        box-sizing: border-box;
+        height: 115px;
+        width: 286px;
+        padding: 20px 0;
+        margin: 0 auto;
+
+        .left {
+            float: left;
+            width: 200px;
+            margin: 0 20px 0 0;
+
+            h3 {
+                margin: 0;
+                padding: 0 0 6px 0;
+                font-size: 18px;
+                line-height: 1;
+            } // h3
+
+            h4 {
+                margin: 0;
+                padding: 0;
+
+                color: #747474;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 1.5;
+            } // h4
+        } // .left
+
+        .bubble {
+            position: relative;
+            float: left;
+            margin: 0;
+            height: 64px;
+            width: 64px;
+            border-radius: 60px;
+            background: rgba(142, 145, 128, 0.07);
+            border: 1px solid rgba(92, 95, 78, 0.1);
+            box-shadow: 0 0 5px 2px #F6F6F6;
+            overflow: hidden;
+
+            .inner {
+                position: absolute;
+                width: 56px;
+                height: 56px;
+                top: 3px;
+                left: 3px;
+                z-index: 10;
+
+                background: transparent;
+                border-radius: 30px;
+                border: 1px solid rgba(92, 95, 78, 0.02);
+                overflow: hidden;
+                box-shadow: inset 0 0 15px rgba(92, 95, 78, 0.45);
+            } // .inner
+
+            img {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                height: 56px;
+                width: 56px;
+                border-radius: 100px;
+                z-index: 2;
+            } // img
+        } // .bubble
+    } // li.empty
 } // .favourites-list

@@ -61,6 +61,13 @@ window.NB.FavouritesListView = Backbone.View.extend({
         var items = this.favouritesForPage_(this.currentPage_),
             container = this.$('.favourites-list').empty();
 
+        if (items.length === 0 && this.currentPage_ === 0){
+            var child = window.JST['Templates/emptyfavouritesview']();
+            container.append(child);
+
+            return;
+        }
+
         _.each(items, function(item){
             var child = window.JST['Templates/favouriteslistitemview'](item);
             container.append(child);
