@@ -32,6 +32,9 @@ window.NB.FavouriteStarView = Backbone.View.extend({
         Backbone.View.prototype.remove.apply(this, arguments);
     },
 
+    /**
+     * Toggle whether or not the current stop is favourited.
+     */
     toggleFavouriteEvt_: function(){
         var stopId = this.appModel_.get('stopId');
 
@@ -41,7 +44,6 @@ window.NB.FavouriteStarView = Backbone.View.extend({
 
     /**
      * Updates the status of the favourite star in response to a change in stop.
-     *
      */
     updateStar_: function(){
         val = this.appModel_.get('stopId');

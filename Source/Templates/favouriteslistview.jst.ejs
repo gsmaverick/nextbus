@@ -5,7 +5,7 @@
         <div class="prev disabled">
             <img src="/static/img/next.png" />
         </div>
-        <div class="next <%= pages === 1 ? 'disabled' : '' %>">
+        <div class="next <%= pages <= 1 ? 'disabled' : '' %>">
             <img src="/static/img/next.png" />
         </div>
 

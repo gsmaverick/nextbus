@@ -1,0 +1,105 @@
+h2 {
+    position: relative;
+    margin: 0;
+    padding: 15px 10px;
+
+    border-bottom: 1px solid #E6E6E6;
+
+    font-size: 20px;
+    line-height: 1;
+    color: #323232;
+
+    .actions {
+        position: absolute;
+        top: 0;
+        right: 7px;
+
+        .prev, .next {
+            display: block;
+            float: left;
+
+            margin: 7px 0;
+            padding: 7px 18px;
+
+            border: 1px solid #DDD;
+
+            background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#EDEDED));
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.5;
+
+                img {
+                    opacity: 0.5;
+                }
+            } // &.disabled
+        } // .prev, .next
+
+        .prev {
+            border-radius: 2px 0 0 2px;
+
+            // Only remove the next button's border when both buttons are not
+            // disabled otherwise let it show as it gives a shadow like effect.
+            &:not(.disabled) + .next:not(.disabled) {
+                border-left: 0;
+            }
+
+            img {
+                -webkit-transform: rotate(180deg);
+            }
+        } // .prev
+
+        .next {
+            border-radius: 0 2px 2px 0;
+        } // .next
+    } // .actions
+} // h2
+
+.favourites-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+        position: relative;
+
+        margin: 0;
+        padding: 5px 10px;
+        border-top: 1px solid #FFFFFF;
+        border-bottom: 1px solid #E6E6E6;
+        background: #FAFAFA;
+        text-shadow: 0 1px 1px #FFFFFF;
+
+        &:nth-child(2) {
+            border-bottom: 0;
+        } // &:nth-child(2)
+
+        .arrow {
+            position: absolute;
+
+            top: 50%;
+            right: 5px;
+            margin-top: -8px;
+
+            opacity: 0.35;
+        } // .arrow
+
+        .number {
+            margin: 3px 5px 0 0;
+        } // .number
+
+        h3 {
+            display: block;
+            margin: 0;
+            padding: 0 16px 0 0;
+
+            font-size: 16px;
+            line-height: 1;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        } // h3
+    } // li
+} // .favourites-list

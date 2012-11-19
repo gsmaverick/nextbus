@@ -1,3 +1,7 @@
+/**
+ * FavouritesListView display a 2 at-a-time list of the user's favourites.  It
+ * support navigation button between different pages of the favourites list.
+ */
 window.NB.FavouritesListView = Backbone.View.extend({
     /**
      * @type {UserModel}
@@ -19,6 +23,11 @@ window.NB.FavouritesListView = Backbone.View.extend({
      * @type {Number} Number of favourites to show per page.
      */
     pageSize_: 2,
+
+    /**
+     * @type {Number} Total number of favourites pages.
+     */
+    numPages_: 0,
 
     initialize: function(){
         this.model.on('change reset', this.render, this);
@@ -85,14 +94,28 @@ window.NB.FavouritesListView = Backbone.View.extend({
         app.getRouter().navigate('stop/' + code, {
             trigger: true
         });
+
+        mixpanel.track('clickFavourite', {
+            code: code
+        });
     },
 
+    /**
+     * Show the previous page of favourites.
+     *
+     * @param {Event}
+     */
     showPreviousPage_: function(evt){
         this.currentPage_--;
 
         this.updateFavourites();
     },
 
+    /**
+     * Show the next page of favourites.
+     *
+     * @param {Event}
+     */
     showNextPage_: function(evt){
         this.currentPage_++;
 
@@ -109,5 +132,7 @@ window.NB.FavouritesListView = Backbone.View.extend({
             this.currentPage_ === (this.numPages_ - 1));
 
         this.renderFavouritesPage_();
+
+        mixpanel.track('navigateFavourites');
     }
 });

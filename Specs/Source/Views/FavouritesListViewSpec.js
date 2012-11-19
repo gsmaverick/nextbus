@@ -74,6 +74,14 @@ describe('FavouritesListView', function(){
             expect(view.$('.next').hasClass('disabled')).toBeTruthy();
         });
 
+        it('should disable the next page button on render', function(){
+            model.set('favourites', []);
+            view.render();
+
+            expect(view.el.querySelector('.next')).not.toBeNull();
+            expect(view.$('.next').hasClass('disabled')).toBeTruthy();
+        });
+
         describe('events', function(){
             var prev, next;
 
