@@ -2,3 +2,4 @@ bin/
 .bundle/
 venv/
 *.py[cod]
+.env
