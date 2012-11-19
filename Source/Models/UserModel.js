@@ -92,8 +92,12 @@ window.NB.UserModel = Backbone.Model.extend({
             favIds = _.pluck(favourites, 'id'),
             index = favIds.indexOf(+code);
 
-        if (index !== -1) {
+        if (index !== -1){
             favourites.splice(index, 1);
+
+            mixpanel.track('unfavourited', {
+                stop: code
+            });
         } else {
             // Get the currently active stop model from the application model.
             var model = window.app.getModel(),
@@ -103,6 +107,10 @@ window.NB.UserModel = Backbone.Model.extend({
             // active.
             if (stop.jsonifyForFavourites && stop.loaded){
                 favourites.push(stop.jsonifyForFavourites());
+
+                mixpanel.track('favourited', {
+                    stop: code
+                });
             } else {
                 return false;
             }

@@ -20,9 +20,16 @@ var Application = function(){
 _.extend(Application.prototype, Backbone.Events, {
     start: function(){
         this.view_.render();
+
+        // Populate the UserModel if it has previously been created otherwise
+        // save the model to localstorage to create it.
         this.user_.fetch();
+        this.user_.save();
 
         try {
+            // Clear out the hash so that the back button strategy works.
+            window.location.hash = '';
+
             Backbone.history.start({
                 root: '/app'
             });

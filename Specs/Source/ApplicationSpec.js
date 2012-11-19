@@ -14,7 +14,9 @@ describe('Application', function(){
         $router = jasmine.createSpy('Router');
         spyOn(window.NB, 'Router').andReturn($router);
 
-        $userModel = jasmine.createSpyObj('UserModel', ['fetch', 'get']);
+        $userModel = jasmine.createSpyObj('UserModel', [
+            'fetch', 'get', 'save'
+        ]);
         spyOn(window.NB, 'UserModel').andReturn($userModel);
 
         appObj = new Application();
@@ -83,8 +85,9 @@ describe('Application', function(){
             expect($appView.render).toHaveBeenCalled();
         });
 
-        it('should fetch the user model', function(){
+        it('should initialize the user model', function(){
             expect($userModel.fetch).toHaveBeenCalled();
+            expect($userModel.save).toHaveBeenCalled();
         });
     }); // describe('start')
 }); // describe('Application')

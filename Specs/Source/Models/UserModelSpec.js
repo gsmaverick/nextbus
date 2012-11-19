@@ -84,7 +84,7 @@ describe('UserModel', function(){
     describe('favouriting', function(){
         var $changeCallback, $stopModel;
         var stopAttrs = {
-            id: 1234,
+            id: 1183,
             name: 'Test',
             routes: [1]
         };
@@ -115,6 +115,9 @@ describe('UserModel', function(){
             model.toggleFavourite('1183');
 
             expect($changeCallback).toHaveBeenCalled();
+            expect(mixpanel.track).toHaveBeenCalledWith('favourited', {
+                stop: '1183'
+            });
             expect(model.get('favourites')).toContain(stopAttrs);
 
             model.toggleFavourite('1183');
@@ -122,6 +125,9 @@ describe('UserModel', function(){
             // Once for the initial fetch, then twice from the toggleFavourite
             // actions.
             expect($changeCallback.callCount).toEqual(3);
+            expect(mixpanel.track).toHaveBeenCalledWith('unfavourited', {
+                stop: '1183'
+            });
             expect(model.get('favourites')).not.toContain('1183');
         });
 
