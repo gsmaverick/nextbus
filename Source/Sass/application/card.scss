@@ -1,6 +1,28 @@
+// Handle large screen so they're not too big!
+@media screen and (min-width: 600px) {
+    .cardHolder {
+        margin: 0 auto;
+        width: 400px !important;
+    }
+
+    .stop .stop-title {
+        width: 360px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .cardHolder {
+        margin: 0;
+    }
+
+    .stop .stop-title {
+        margin: 0 10px;
+    }
+}
+
 .stop .stop-title {
     display: block;
-    margin: 0 10px;
     padding: 5px 5px 8px 5px;
 
     border-radius: 4px 4px 0 0;
@@ -39,16 +61,9 @@
     } // img
 } // .swipe-hint
 
-@media screen and (min-width: 600px) {
-    .cardHolder {
-        width: 400px !important;
-    }
-}
-
 .cardHolder {
     display: block;
     position: relative;
-    margin: 0;
     padding: 0;
     overflow: hidden;
 
@@ -76,13 +91,11 @@
         -webkit-transition: 0.25s all linear;
 
         &.right {
-            -webkit-transform: translate3d(3000px, 0, 0);
-            //-webkit-transform: translate3d(325px, 0, 0);
+            -webkit-transform: translate3d(600px, 0, 0);
         }
 
         &.left {
-            -webkit-transform: translate3d(-400px, 0, 0);
-            //-webkit-transform: translate3d(-325px, 0, 0);
+            -webkit-transform: translate3d(-600px, 0, 0);
         }
 
         .title {

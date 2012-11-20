@@ -431,9 +431,22 @@ h2.favourites-title {
         border-radius: 100px;
         z-index: 2; }
 
+@media screen and (min-width: 600px) {
+  .cardHolder {
+    margin: 0 auto;
+    width: 400px !important; }
+
+  .stop .stop-title {
+    width: 360px;
+    margin: 0 auto; } }
+@media screen and (max-width: 599px) {
+  .cardHolder {
+    margin: 0; }
+
+  .stop .stop-title {
+    margin: 0 10px; } }
 .stop .stop-title {
   display: block;
-  margin: 0 10px;
   padding: 5px 5px 8px 5px;
   border-radius: 4px 4px 0 0;
   border: 1px solid #DEDEDE;
@@ -465,13 +478,9 @@ h2.favourites-title {
     vertical-align: text-top;
     margin: 2px 5px 0 0; }
 
-@media screen and (min-width: 600px) {
-  .cardHolder {
-    width: 400px !important; } }
 .cardHolder {
   display: block;
   position: relative;
-  margin: 0;
   padding: 0;
   overflow: hidden;
   background: white;
@@ -488,9 +497,9 @@ h2.favourites-title {
   .cardHolder .fakeCard, .cardHolder .card {
     -webkit-transition: 0.25s all linear; }
     .cardHolder .fakeCard.right, .cardHolder .card.right {
-      -webkit-transform: translate3d(3000px, 0, 0); }
+      -webkit-transform: translate3d(600px, 0, 0); }
     .cardHolder .fakeCard.left, .cardHolder .card.left {
-      -webkit-transform: translate3d(-400px, 0, 0); }
+      -webkit-transform: translate3d(-600px, 0, 0); }
     .cardHolder .fakeCard .title, .cardHolder .card .title {
       position: relative;
       padding: 10px;
