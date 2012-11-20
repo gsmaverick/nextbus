@@ -1,5 +1,6 @@
 //= require Router
 //= require_tree .
+//= stub marketing
 
 /**
  * The basic application object used to initialize the application.  Creates a
