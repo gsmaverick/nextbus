@@ -100,6 +100,8 @@
         input.prop('disabled', '');
 
         alert(resp.text);
+
+        _gaq.push(['_trackEvent', 'Phone', 'success']);
     };
 
     var ajaxError = function(){
@@ -108,12 +110,16 @@
         $('.send-to-phone input').prop('disabled', '');
 
         alert('Could not send link to phone.  Please try again.');
+
+        _gaq.push(['_trackEvent', 'Phone', 'error']);
     };
 
     $('.send-to-phone button').on('click', function(){
         // Check if another request is in progress if so don't send another one.
         if (reqInProgress) return;
         reqInProgress = true;
+
+        _gaq.push(['_trackEvent', 'Phone', 'submit']);
 
         var input = $('.send-to-phone input'),
             number = input.val().trim();
