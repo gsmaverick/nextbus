@@ -1,6 +1,6 @@
 import sys, time, urllib2, os, re
 from flask import Flask, jsonify, Response, render_template, json, send_from_directory, request
-#from twilio.rest import TwilioRestClient
+from twilio.rest import TwilioRestClient
 from api import schema, search, stop
 
 app = Flask(__name__)
@@ -103,22 +103,35 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-"""
 @app.route('/send_to_phone', methods=['POST'])
 def send_to_phone():
     message = 'Find next bus times by going to http://www.thenextbusapp.com!'
     account = os.environ.get('TWILIO_ACCOUNT_SID')
     token = os.environ.get('TWILIO_AUTH_TOKEN')
-
     client = TwilioRestClient(account, token)
 
     number = request.form['number'].strip('()-')
+    error = None
+    sms = None
 
-    #if
-    #message = client.sms.messages.create(to='2896840349', from_='12892041646', body=message)
+    # Match only numbers with 10 or 11 digits.  Otherwise throw an error.
+    if re.match('^[0-9]{10,11}$', number):
+        sms = client.sms.messages.create(
+            to=number,
+            from_='12892041646',
+            body=message)
+    else:
+        error = 'Invalid phone number.'
 
-    return request.form['number']
-"""
+    if sms.status == 'failed':
+        error = 'Message failed to send, please try again.'
+
+    result = {
+        'status': 'error' if error else 'success',
+        'text': error if error else 'Successfully sent message.'
+    }
+    resp = Response(json.dumps(result), status=200, mimetype='application/json')
+    return resp
 
 if __name__ == '__main__':
     try:

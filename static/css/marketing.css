@@ -568,30 +568,58 @@ img {
       color: #565753;
       font-size: 18px;
       font-weight: normal; }
-    #content .right-col button {
-      display: block;
-      font-size: 18px;
-      line-height: 1;
-      color: #FFF;
-      margin: 40px auto 10px auto;
-      padding: 15px 40px;
-      outline: 0;
-      border: 1px solid #297cc4;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
-      text-shadow: 0 1px 1px #246faf;
-      -webkit-box-shadow: inset 0 3px 2px -2px #c6def3;
-      -moxbox-shadow: inset 0 3px 2px -2px #c6def3;
-      box-shadow: inset 0 3px 2px -2px #c6def3;
-      background: #69a8e0;
-      background: -moz-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #69a8e0), color-stop(100%, #2b84d1));
-      background: -webkit-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
-      background: -o-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
-      background: -ms-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
-      background: linear-gradient(to bottom, #69a8e0 0%, #2b84d1 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#69a8e0', endColorstr='#2b84d1',GradientType=0 ); }
+    #content .right-col .send-to-phone {
+      margin: 40px auto 10px;
+      padding: 0;
+      width: 304px; }
+      #content .right-col .send-to-phone button {
+        display: block;
+        float: left;
+        font-size: 16px;
+        line-height: 1;
+        color: #FFF;
+        width: 104px;
+        padding: 8px 15px;
+        outline: 0;
+        border: 1px solid #297cc4;
+        text-shadow: 0 1px 1px #246faf;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: inset 0 3px 2px -2px #c6def3;
+        -moz-box-shadow: inset 0 3px 2px -2px #c6def3;
+        box-shadow: inset 0 3px 2px -2px #c6def3;
+        background: #69a8e0;
+        background: -moz-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #69a8e0), color-stop(100%, #2b84d1));
+        background: -webkit-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
+        background: -o-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
+        background: -ms-linear-gradient(top, #69a8e0 0%, #2b84d1 100%);
+        background: linear-gradient(to bottom, #69a8e0 0%, #2b84d1 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#69a8e0', endColorstr='#2b84d1',GradientType=0 ); }
+      #content .right-col .send-to-phone input {
+        display: block;
+        padding: 8px;
+        float: left;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 200px;
+        border: 1px solid #DDDDDD;
+        outline: 0;
+        font-size: 14px;
+        line-height: 1;
+        -webkit-box-shadow: inset 0 0 3px #CCCCCC;
+        -moz-box-shadow: inset 0 0 3px #CCCCCC;
+        box-shadow: inset 0 0 3px #CCCCCC; }
+        #content .right-col .send-to-phone input::-webkit-input-placeholder {
+          color: #AAAAAA; }
+        #content .right-col .send-to-phone input:-moz-placeholder {
+          color: #AAAAAA; }
+        #content .right-col .send-to-phone input:-ms-input-placeholder {
+          color: #AAAAAA; }
+        #content .right-col .send-to-phone input.placeholder {
+          color: #AAAAAA; }
     #content .right-col .fine-print {
       display: block;
       color: #565753;
