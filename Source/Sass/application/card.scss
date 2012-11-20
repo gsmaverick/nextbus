@@ -116,6 +116,9 @@
                 line-height: 26px;
                 letter-spacing: 1px;
                 text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 text-rendering: optimizeLegibility;
             } // h2
         } // .title

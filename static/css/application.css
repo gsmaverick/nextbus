@@ -514,6 +514,9 @@ h2.favourites-title {
         line-height: 26px;
         letter-spacing: 1px;
         text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         text-rendering: optimizeLegibility; }
   .cardHolder .dots {
     list-style: none;
