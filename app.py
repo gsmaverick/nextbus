@@ -7,11 +7,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('marketing.html')
+    user_agent = request.headers.get('User-Agent')
+    print user_agent
+    isMobile = re.search('android|ipad|iphone', user_agent, re.IGNORECASE)
+    tmpl = 'index' if isMobile else 'marketing'
+
+    return render_template('%s.html' % tmpl)
 
 @app.route('/app')
-@app.route('/app/stop/<int:stop_id>')
-def app_home(stop_id=0):
+def app_home():
     """
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
