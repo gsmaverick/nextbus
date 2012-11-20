@@ -185,5 +185,13 @@ describe('CardView', function(){
                 'hasSwiped', true);
             expect(swipeHint.style.display).toEqual('none');
         });
+
+        it('should allow a swipe on the hint', function(){
+            renderWithSwipeAndSlideVal(false, 2);
+
+            view.$('.swipe-hint').trigger('swipeLeft');
+
+            expect(view.activeSlide_).toEqual(2);
+        });
     }); // describe('swipe hint')
 }); // describe('CardView')

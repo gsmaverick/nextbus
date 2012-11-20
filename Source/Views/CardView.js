@@ -10,7 +10,9 @@ window.NB.CardView = Backbone.View.extend({
         'swipeRight .timez': 'swipeRightEvt_',
 
         'swipeLeft .title':  'swipeLeftEvt_',
-        'swipeRight .title': 'swipeRightEvt_'
+        'swipeRight .title': 'swipeRightEvt_',
+
+        'swipeLeft .swipe-hint': 'swipeLeftEvt_'
     },
 
     /**
