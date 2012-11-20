@@ -9,26 +9,31 @@ describe('FavouritesListView', function(){
             favourites: [
                 {
                     id: '1234',
+                    code: '1234',
                     name: 'Test 1',
                     routes: [1, 2]
                 },
                 {
                     id: '1235',
+                    code: '1235',
                     name: 'Test 2',
                     routes: [3, 4]
                 },
                 {
                     id: '1236',
+                    code: '1236',
                     name: 'Test 3',
                     routes: [1, 2, 6]
                 },
                 {
                     id: '1237',
+                    code: '1237',
                     name: 'Test 4',
                     routes: [2]
                 },
                 {
                     id: '1238',
+                    code: '1238',
                     name: 'Test 5',
                     routes: [1, 51]
                 }

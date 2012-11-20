@@ -14,21 +14,6 @@ describe('IndexView', function(){
     });
 
     describe('user actions', function(){
-        it('should navigate to a stop', function(){
-            $('.input-holder input', Sandbox).val('1183');
-
-            $('form', Sandbox).trigger('submit');
-
-            var router = window.app.getRouter();
-            expect(router.navigate).toHaveBeenCalledWith('stop/1183', {
-                trigger: true
-            });
-            expect(mixpanel.track).toHaveBeenCalledWith('formSubmit', {
-                action: 'stop',
-                query: '1183'
-            });
-        });
-
         it('should navigate to a search result', function(){
             $('.input-holder input', Sandbox).val('university');
 
@@ -39,7 +24,6 @@ describe('IndexView', function(){
                 trigger: true
             });
             expect(mixpanel.track).toHaveBeenCalledWith('formSubmit', {
-                action: 'search',
                 query: 'university'
             });
 

@@ -42,17 +42,11 @@ window.NB.IndexView = Backbone.View.extend({
     formSubmitEvt_: function(evt){
         evt.preventDefault();
 
-        var inputVal = this.$('.user_input').val();
+        var inputVal = encodeURIComponent(this.$('.user_input').val());
 
-        // Match a 4 digit stop code directly.
-        var url = (inputVal.match(/^[0-9]{4}$/)) ? 'stop' : 'search';
-
-        app.getRouter().navigate(url + '/' + encodeURIComponent(inputVal), {
-            trigger: true
-        });
+        app.getRouter().navigate('search/' + inputVal, { trigger: true });
 
         mixpanel.track('formSubmit', {
-            action: url,
             query: inputVal
         });
 

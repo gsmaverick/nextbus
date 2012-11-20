@@ -45,8 +45,6 @@ describe('SearchView', function(){
             request = mostRecentAjaxRequest();
             request.response(TestResponses.models.search.error);
 
-            //Sandbox.appendChild(view.render().el);
-
             expect(view.el.querySelector('.error')).not.toBeNull();
             expect(mixpanel.track).toHaveBeenCalledWith(
                 'searchServerError', {query: 'university'});
@@ -63,13 +61,13 @@ describe('SearchView', function(){
             it('should render all the results', function(){
                 var results = view.$('.result');
 
-                expect(results.length).toEqual(12);
+                expect(results.length).toEqual(10);
             });
 
             it('should set the data attribute', function(){
                 var result = view.$('.result')[0];
 
-                expect(result.getAttribute('data-stop-code')).toEqual('1183');
+                expect(result.getAttribute('data-stop-code')).toEqual('355277');
             });
 
             it('should set the proper title', function(){
@@ -90,11 +88,11 @@ describe('SearchView', function(){
 
                 var router = app.getRouter();
 
-                expect(router.navigate).toHaveBeenCalledWith('stop/1183', {
+                expect(router.navigate).toHaveBeenCalledWith('stop/355277', {
                     trigger: true
                 });
                 expect(mixpanel.track).toHaveBeenCalledWith(
-                    'searchResultSelected', {code: '1183'});
+                    'searchResultSelected', {code: '355277'});
             });
         }); // describe('loaded events')
 

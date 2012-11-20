@@ -82,21 +82,21 @@ window.NB.UserModel = Backbone.Model.extend({
     /**
      * Wrapper function to toggle the user's favourited state of a stop.
      *
-     * @param {String} code - Four digit stop code to add/remove to the user's
-     *     favourites list.
+     * @param {String} code - Unique identifier for this bus to add/remove to
+     *     the user's favourites list.
      *
      * @returns {Boolean}
      */
-    toggleFavourite: function(code){
+    toggleFavourite: function(stop_id){
         var favourites = _.clone(this.get('favourites')),
             favIds = _.pluck(favourites, 'id'),
-            index = favIds.indexOf(+code);
+            index = favIds.indexOf(stop_id);
 
         if (index !== -1){
             favourites.splice(index, 1);
 
             mixpanel.track('unfavourited', {
-                stop: code
+                stop: stop_id
             });
         } else {
             // Get the currently active stop model from the application model.
@@ -109,7 +109,7 @@ window.NB.UserModel = Backbone.Model.extend({
                 favourites.push(stop.jsonifyForFavourites());
 
                 mixpanel.track('favourited', {
-                    stop: code
+                    stop: stop_id
                 });
             } else {
                 return false;
@@ -122,13 +122,13 @@ window.NB.UserModel = Backbone.Model.extend({
     /**
      * Check if a stop is favourited by the user.
      *
-     * @param {String} code - Four digit stop code.
+     * @param {String} code - Unique stop id for the stop.
      *
      * @returns {Booelan} Whether the given stop is favourited by the user.
      */
-    isFavourite: function(code){
+    isFavourite: function(stop_id){
         var favourites = _.pluck(this.get('favourites'), 'id');
 
-        return favourites.indexOf(+code) !== -1;
+        return favourites.indexOf(stop_id) !== -1;
     }
 });

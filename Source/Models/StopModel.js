@@ -5,6 +5,8 @@ window.NB.StopModel = Backbone.Model.extend({
          */
         id: null,
 
+        code: null,
+
         /**
          * @type {String} The name of this stop.
          */
@@ -28,7 +30,7 @@ window.NB.StopModel = Backbone.Model.extend({
         var response = {};
 
         // Parse out the stop details.
-        response.id = resp.info.stop_id;
+        response.code = resp.info.stop_id;
         response.name = resp.info.stop_name;
 
         // Construct the list of routes for this stop.

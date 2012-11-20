@@ -19,8 +19,8 @@ def app_home(stop_id=0):
     t = int(time.time())
     return render_template('index.html', t=t)
 
-@app.route('/api/stops/<int:stop_code>', methods=['GET'])
-def show_stop(stop_code):
+@app.route('/api/stops/<int:stop_id>', methods=['GET'])
+def show_stop(stop_id):
     """
         Returns JSON containing stop information for this stop id as well as a list
         of all upcoming bus routes and the specific arrival times.
@@ -44,8 +44,8 @@ def show_stop(stop_code):
                 ]
             }
     """
-    stop_times = stop.getStopTimesByCode(stop_code)
-    stop_info = stop.getStopInformation(stop_code)
+    stop_times = stop.getStopTimesByStopId(stop_id)
+    stop_info = stop.getStopInformation(stop_id)
 
     result = {
         'info': {
@@ -63,7 +63,12 @@ def show_stop(stop_code):
 @app.route('/api/search/text/<string:query>', methods=['GET', 'POST'])
 def do_search(query):
     query = urllib2.unquote(query)
-    result = search.searchByStopName(query, 10)
+
+    result = None
+    if re.match('^[0-9]{4}$', query):
+        result = search.searchByStopCode(query)
+    else:
+        result = search.searchByStopName(query, 10)
 
     resp = Response(json.dumps(result), status=200, mimetype='application/json')
     return resp

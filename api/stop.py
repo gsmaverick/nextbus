@@ -2,29 +2,28 @@ import time
 from sqlalchemy import select, and_
 from . import db, schema
 
-def getStopInformation(stop_code):
+def getStopInformation(stop_id):
     """
         Returns a dictionary containing all the information regarding the stop
-        code.  This includes latitude, longitude and the stop name.
+        id.  This includes latitude, longitude and the stop name.
 
-        :param stop_code: Four digit numerical code that identifies this stop
+        :param stop_id: ID value that identifies this stop.
     """
     conn = db.connect()
 
-    query = select([schema.stops], schema.stops.c.code == stop_code)
+    query = select([schema.stops], schema.stops.c.id == stop_id)
     result = conn.execute(query).fetchone()
 
     stop = dict(zip(result.keys(), result))
-    del stop['id'] # Id is an internal identifier and is not canonical.
 
     return stop
 
-def getStopTimesByCode(stop_code):
+def getStopTimesByStopId(stop_id):
     """
         Returns a list of routes along with the next times that the bus stops at
         this stop.
 
-        :param stop_code: Four digit numerical code that identifies this stop.
+        :param stop_id: ID value that identifies this stop.
     """
     conn = db.connect()
 
@@ -35,10 +34,7 @@ def getStopTimesByCode(stop_code):
             schema.stop_times.c.stop_id,
             schema.stop_times.c.route_number
         ],
-        and_(
-            schema.stop_times.c.stop_id == schema.stops.c.id,
-            schema.stops.c.code == stop_code
-        )
+        schema.stop_times.c.stop_id == stop_id
     ).distinct(schema.stop_times.c.route_name)
     result = conn.execute(query)
 

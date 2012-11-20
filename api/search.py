@@ -31,6 +31,18 @@ def searchByLatLon(lat, lon, num=5):
 
     return [_stopNameResultDict(s, conn) for s in result]
 
+def searchByStopCode(code):
+    """
+        Search for stops that have the given stop code.
+
+        :param name: Stop code to search for.
+    """
+    conn = db.connect()
+
+    query = select([schema.stops], schema.stops.c.code == code)
+    result = conn.execute(query).fetchall()
+
+    return [_stopNameResultDict(s, conn) for s in result]
 
 def searchByStopName(name, num=25):
     """
@@ -84,6 +96,7 @@ def _stopNameResultDict(stop, conn):
         :param stop: Stop result row from the database query.
     """
     return {
+        'id': stop['id'],
         'stop_code': stop['code'],
         'stop_name': stop['name'],
         'routes': _routesForStopId(stop['id'], conn)
