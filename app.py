@@ -105,7 +105,7 @@ def favicon():
 
 @app.route('/send_to_phone', methods=['POST'])
 def send_to_phone():
-    message = 'Find next bus times by going to http://www.thenextbusapp.com!'
+    message = 'Find next bus times by going to http://www.thenextbusapp.com'
     account = os.environ.get('TWILIO_ACCOUNT_SID')
     token = os.environ.get('TWILIO_AUTH_TOKEN')
     client = TwilioRestClient(account, token)
