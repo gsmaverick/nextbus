@@ -5,6 +5,12 @@
 
     text-align: center;
 
+    &.small span {
+        height: 8px;
+        width: 8px;
+        margin: 0 2px;
+    }
+
     span {
         display: inline-block;
         margin: 0 3px;

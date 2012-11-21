@@ -54,6 +54,24 @@ h3.error {
   font-size: 16px;
   text-shadow: 0 1px 1px #FFFFFF; }
 
+.load-screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
+  .load-screen img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -29px 0 0 -29px; }
+  .load-screen .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px; }
+
 @-webkit-keyframes locating {
   0% {
     -webkit-transform: rotate(53deg);
@@ -799,6 +817,10 @@ h2.favourites-title {
   margin: 30px 0;
   padding: 0;
   text-align: center; }
+  .loader.small span {
+    height: 8px;
+    width: 8px;
+    margin: 0 2px; }
   .loader span {
     display: inline-block;
     margin: 0 3px;
