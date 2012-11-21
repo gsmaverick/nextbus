@@ -5,7 +5,7 @@ SQLAlchemy==0.7.9
 Werkzeug==0.8.3
 psycopg2==2.4.5
 distribute==0.6.28
+gevent==0.13.8
 gunicorn==0.16.1
 httplib2==0.7.7
 twilio==3.4.1
-gevent==0.13.8
