@@ -11,6 +11,12 @@ window.NB.IndexView = Backbone.View.extend({
         'click button': 'currentLocationEvt_'
     },
 
+    /**
+     * @type {Boolean} Whether or not a geolocation request is currently in
+     * progress.
+     */
+    gpsInProgress_: false,
+
     initialize: function(){
         this.geoSuccessEvt_ = this.geoSuccessEvt_.bind(this);
         this.geoErrorEvt_ = this.geoErrorEvt_.bind(this);
@@ -26,11 +32,19 @@ window.NB.IndexView = Backbone.View.extend({
      * Initiates a geolocation request to find the user's current position.
      */
     currentLocationEvt_: function(){
+        // Don't start another geolocation request if one is in progress.
+        if (this.gpsInProgress_){
+            alert('Geolocation request in progress.');
+            return;
+        }
+
         this.el.classList.add('locating');
 
         navigator.geolocation.getCurrentPosition(
-            this.geoSuccessEvt_, this.geoErrorEvt_
+            this.geoSuccessEvt_, this.geoErrorEvt_, {maximumAge: 300000}
         );
+
+        this.gpsInProgress_ = true;
     },
 
     /**
@@ -60,6 +74,7 @@ window.NB.IndexView = Backbone.View.extend({
      */
     geoSuccessEvt_: function(pos){
         this.el.classList.remove('locating');
+        this.gpsInProgress_ = false;
 
         var param = [pos.coords.latitude, pos.coords.longitude].join('|');
 
@@ -77,6 +92,7 @@ window.NB.IndexView = Backbone.View.extend({
      */
     geoErrorEvt_: function(err){
         this.el.classList.remove('locating');
+        this.gpsInProgress_ = false;
 
         if (err.code == 1){
             alert('Permission denied: Could not acquire current location.');

@@ -43,16 +43,30 @@ describe('IndexView', function(){
             $('button', Sandbox).trigger('click');
 
             expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalledWith(
-                view.geoSuccessEvt_, view.geoErrorEvt_);
+                view.geoSuccessEvt_, view.geoErrorEvt_, {maximumAge: 300000});
             expect(view.el.classList.contains('locating')).toBeTruthy();
         });
 
-        describe('geolocation response', function(){
+        describe('geolocation', function(){
             beforeEach(function(){
                 spyOn(navigator.geolocation, 'getCurrentPosition');
                 spyOn(window, 'alert');
 
                 view.currentLocationEvt_();
+            });
+
+            it('should set in progress flag', function(){
+                expect(view.gpsInProgress_).toBeTruthy();
+            });
+
+            it('should not start another geolocation request', function(){
+                view.currentLocationEvt_();
+
+                var calls = navigator.geolocation.getCurrentPosition.callCount;
+
+                expect(calls).toEqual(1);
+                expect(window.alert).toHaveBeenCalledWith(
+                    'Geolocation request in progress.');
             });
 
             it('should alert the right error message for code 1', function(){
@@ -68,6 +82,7 @@ describe('IndexView', function(){
                     message: 'test'
                 });
                 expect(view.el.classList.contains('locating')).toBeFalsy();
+                expect(view.gpsInProgress_).toBeFalsy();
             });
 
             it('should alert the right error message for code 2', function(){
@@ -86,6 +101,7 @@ describe('IndexView', function(){
                     message: 'test'
                 });
                 expect(view.el.classList.contains('locating')).toBeFalsy();
+                expect(view.gpsInProgress_).toBeFalsy();
             });
 
             it('should handle a successful geolocation call', function(){
@@ -99,8 +115,9 @@ describe('IndexView', function(){
                 expect(window.app.router_.navigate).toHaveBeenCalledWith(
                     'search/1%7C1', {trigger: true});
                 expect(view.el.classList.contains('locating')).toBeFalsy();
+                expect(view.gpsInProgress_).toBeFalsy();
                 expect(mixpanel.track).toHaveBeenCalledWith('geoSuccess');
             });
-        }); // describe('geolocation response')
+        }); // describe('geolocation')
     }); // describe('user actions')
 }); // describe('IndexView')
