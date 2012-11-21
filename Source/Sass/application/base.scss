@@ -73,27 +73,3 @@ h3.error {
     font-size: 16px;
     text-shadow: 0 1px 1px #FFFFFF;
 } // h3.error
-
-.load-screen {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-
-    img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -29px 0 0 -29px;
-    } // img
-
-    .loader {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        margin-left: -100px;
-        width: 200px;
-    } // .loader
-} // .load-screen
