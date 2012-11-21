@@ -1,6 +1,5 @@
-import time
 from sqlalchemy import select, and_
-from . import db, schema
+from . import db, schema, easternTime
 
 def getStopInformation(stop_id):
     """
@@ -39,7 +38,8 @@ def getStopTimesByStopId(stop_id):
     result = conn.execute(query)
 
     # For each (stop id, route) recover the stop times after this point in time.
-    current_time = time.strftime('%H:%M:%S')
+    current_time = easternTime().strftime('%H:%M:%S')
+
     routes = [_getStopTimesForRouteStop(r, current_time, conn) for r in result]
 
     # _getStopTimesForRouteStop returns None for routes that have no arrival
@@ -64,8 +64,8 @@ def _getStopTimesForRouteStop(route, after_time, conn, num=5):
     _days = [
         'sunday','monday','tuesday','wednesday','thursday','friday','saturday'
     ]
-    today = _days[int(time.strftime('%w'))]
-    tomorrow = _days[(int(time.strftime('%w')) + 1) % 7]
+    today = _days[int(easternTime().strftime('%w'))]
+    tomorrow = _days[(int(easternTime().strftime('%w')) + 1) % 7]
 
     times_query = select(
         [schema.stop_times.c.stop_time, schema.stop_times.c.endpoint],
