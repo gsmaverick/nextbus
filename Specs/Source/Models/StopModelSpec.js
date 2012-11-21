@@ -7,6 +7,7 @@ describe('StopModel', function(){
 
     it('should have the proper defaults', function(){
         expect(model.get('id')).toBeNull();
+        expect(model.get('code')).toBeNull();
         expect(model.get('name')).toBeNull();
         expect(model.get('routes')).toBeNull();
 
@@ -31,7 +32,8 @@ describe('StopModel', function(){
             request.response(TestResponses.models.stop.success);
 
             expect(model.get('name')).toEqual('JOHN at CHARLTON');
-            expect(model.get('id')).toEqual(2097);
+            expect(model.get('id')).toEqual(1785);
+            expect(model.get('code')).toEqual(2097);
             expect(model.get('routes').length).toBe(3);
         });
 
@@ -40,9 +42,9 @@ describe('StopModel', function(){
 
             var result = model.jsonifyForFavourites();
 
-            expect(result.id).toEqual(2097);
+            expect(result.id).toEqual(1785);
             expect(result.name).toEqual('JOHN at CHARLTON');
-            expect(result.routes).toEqual([35, 21, 33]);
+            expect(result.routes).toEqual([21, 35, 33]);
         });
     }); // describe('fetching')
 }); // describe('StopModel')

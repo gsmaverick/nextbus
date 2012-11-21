@@ -1,10 +1,13 @@
 window.NB.StopModel = Backbone.Model.extend({
     defaults: {
         /**
-         * @type {String} Four digit number that uniquely identifies the stop.
+         * @type {Number} Number used to uniquely identify this stop.
          */
         id: null,
 
+        /**
+         * @type {String} Four digit number used to find the stop in the system.
+         */
         code: null,
 
         /**
@@ -30,7 +33,8 @@ window.NB.StopModel = Backbone.Model.extend({
         var response = {};
 
         // Parse out the stop details.
-        response.code = resp.info.stop_id;
+        response.id = resp.info.id;
+        response.code = resp.info.stop_code;
         response.name = resp.info.stop_name;
 
         // Construct the list of routes for this stop.

@@ -53,7 +53,8 @@ def show_stop(stop_id):
 
     result = {
         'info': {
-            'stop_id': stop_info['code'],
+            'id': stop_id,
+            'stop_code': stop_info['code'],
             'stop_name': stop_info['name'],
             'status': 200,
             'routes': len(stop_times)
