@@ -365,17 +365,42 @@ header {
 
 .responsive {
     display: block;
-    padding: 5px 15px;
+    padding: 5px 15px 0 15px;
     box-sizing: border-box;
 
     p {
         font-size: 16px;
 
+        .question {
+            display: block;
+
+            color: #384343;
+            font-weight: bold;
+        } // .question
+
         .answer {
             display: block;
             margin: 0 0 10px 10px;
             padding: 0;
+
+            font-size: 14px;
             color: #545454;
         } // .answer
+
+        .action-icon {
+            display: inline-block;
+            width: 18px;
+            height: 15px;
+            margin: 0 2px;
+
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAPCAQAAABDj1eZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUdJREFUKFNtkLtLw1AYxS/qJLhXVKr2ZRulUNtiqgSb3CziICI6ucTFVYcOnaQOFRwUnNTRwUWXgpP/QdHNUEQUHGxofYBTlRs83iZNjKTncOGe7/vx3QchXUWn6FL3jhfKUdCCr5zuifV5oDiHQM+c+CIhiiCSWNu08iq9oHXKLAiqrgR4UXqlOEYZt++ExEL0wW7+OW0G10muLv9gmqfe5FAWKmTMYQYiFL7PYwyLOD8lSjNh2gdnPzMII4QUBxc4OothbAF7GCBKQ0YbSWyPQsIhqvetS+y0ygGMo/KFZfviDvR4AhwgZU9dGYnA0J/6ndc15i3ouYIMcVVUcEXIoOxCeRCfwP8sXBSdjtpUv/1QW+K16kCCIUC4id9Fa0JtkluwVkSfqPL6RwfSDA0aNlx7k/bWgViB7bMS2/1vk5sdsZLN/ALSuL3tylO4RAAAAABJRU5ErkJggg==);
+            background-size: 18px 15px;
+        } // .action-icon
+
+        a {
+            color: #0C6E6E;
+            padding: 5px 1px;
+        }
     } // p
 } // .responsive
