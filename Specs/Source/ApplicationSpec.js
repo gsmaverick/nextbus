@@ -20,6 +20,8 @@ describe('Application', function(){
         spyOn(window.NB, 'UserModel').andReturn($userModel);
 
         appObj = new Application();
+
+        spyOn(appObj, 'primeDocument_');
     });
 
     afterEach(function(){
@@ -88,6 +90,10 @@ describe('Application', function(){
         it('should initialize the user model', function(){
             expect($userModel.fetch).toHaveBeenCalled();
             expect($userModel.save).toHaveBeenCalled();
+        });
+
+        it('should prime the document', function(){
+            expect(appObj.primeDocument_).toHaveBeenCalled();
         });
     }); // describe('start')
 }); // describe('Application')

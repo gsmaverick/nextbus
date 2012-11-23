@@ -20,26 +20,43 @@ var Application = function(){
 
 _.extend(Application.prototype, Backbone.Events, {
     start: function(){
-        this.view_.render();
+        this.primeDocument_();
 
         // Populate the UserModel if it has previously been created otherwise
         // save the model to localstorage to create it.
         this.user_.fetch();
         this.user_.save();
 
+        this.view_.render();
+
         try {
             // Clear out the hash so that the back button strategy works.
             window.location.hash = '';
 
-            Backbone.history.start({
-                root: '/app'
-            });
+            Backbone.history.start();
         } catch (e) {
             console.error(e);
         }
 
         mixpanel.register({'uuid': this.user_.get('userId')});
         mixpanel.track('AppLoad');
+    },
+
+    /**
+     * Removing application loading styles and classes.  Try to hide address
+     * bar by absolutely setting the height of the body.
+     */
+    primeDocument_: function(){
+        window.scrollTo(0, 1);
+
+        var body = document.querySelector('body'),
+            loadScreen = document.querySelector('.load-screen');
+
+        body.style.height = body.offsetHeight + 'px';
+        body.classList.remove('loading');
+        body.removeChild(loadScreen);
+
+        window.scrollTo(0, 1);
     },
 
     /**

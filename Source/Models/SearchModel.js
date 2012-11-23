@@ -26,7 +26,7 @@ window.NB.SearchModel = Backbone.Model.extend({
         this.loaded = true;
 
         return {
-            results: response
+            results: response.results
         };
     },
 
