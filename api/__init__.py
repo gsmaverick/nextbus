@@ -2,7 +2,7 @@
 # the NextBus service.
 
 __version__ = '1.0.0'
-__all__ = ['schema', 'search', 'stop']
+__all__ = ['schema', 'search', 'stop', 'services']
 
 import os, pytz
 from datetime import datetime

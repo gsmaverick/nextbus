@@ -1,14 +1,12 @@
-import sys, time, urllib2, os, re
+import time, urllib2, os, re
 from flask import Flask, jsonify, Response, render_template, json, send_from_directory, request
-from twilio.rest import TwilioRestClient
-from api import schema, search, stop
+from api import search, stop, services
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     user_agent = request.headers.get('User-Agent')
-    print user_agent
     isMobile = re.search('android|ipad|iphone', user_agent, re.IGNORECASE)
     tmpl = 'index' if isMobile else 'marketing'
 
@@ -16,12 +14,46 @@ def index():
 
 @app.route('/app')
 def app_home():
+    t = int(time.time())
+    return render_template('index.html', t=t)
+
+@app.route('/help', methods=['GET'])
+def show_help():
+    return render_template('help.html', header=True)
+
+@app.route('/about', methods=['GET'])
+def show_about():
     """
         Main entry point of the application for mobile and desktop users.  We detect
         if a mobile phone is in use and serve up the mobile version instead.
     """
-    t = int(time.time())
-    return render_template('index.html', t=t)
+    return render_template('about.html', header=True)
+
+@app.route('/send_to_phone', methods=['POST'])
+def send_to_phone():
+    """
+        Sends an SMS message to the specified phone if it is valid.  Returns the
+        following JSON:
+            {
+                "status": "Error/success based on whether the message was sent",
+                "text": "Clarifying error or success message"
+            }
+    """
+    number = request.form['number'].strip('()-')
+    result = services.sendToNumber(number)
+
+    resp = Response(json.dumps(result), status=200, mimetype='application/json')
+    return resp
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+        'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/cache.manifest')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+        'cache.manifest', mimetype='text/cache-manifest')
 
 @app.route('/api/stops/<int:stop_id>', methods=['GET'])
 def show_stop(stop_id):
@@ -66,80 +98,73 @@ def show_stop(stop_id):
     return resp
 
 @app.route('/api/search/text/<string:query>', methods=['GET', 'POST'])
-def do_search(query):
+def text_search(query):
+    """
+        Returns JSON with the results of this text search query in form:
+            {
+                "info": {
+                    "results": "Number of search results returned."
+                },
+                results: [List of stop result]
+            }
+
+        A stop result is in the following form:
+            {
+                "id": "Unique id of this stop",
+                "routes": "List of route numbers that arrive at this stop",
+                "stop_code": "Four digit stop identifier",
+                "stop_name": "Name of this stop"
+            }
+    """
     query = urllib2.unquote(query)
 
-    result = None
+    searchResults = None
     if re.match('^[0-9]{4}$', query):
-        result = search.searchByStopCode(query)
+        searchResults = search.searchByStopCode(query)
     else:
-        result = search.searchByStopName(query, 10)
+        searchResults = search.searchByStopName(query, 10)
+
+    result = {
+        'info': {
+            'status': 200,
+            'results': len(searchResults)
+        },
+        'results': searchResults
+    }
 
     resp = Response(json.dumps(result), status=200, mimetype='application/json')
     return resp
 
 @app.route('/api/search/geo/<string:query>', methods=['GET', 'POST'])
-def do_geo_search(query):
+def geo_search(query):
+    """
+        Returns JSON with the results of this geolocation search query in form:
+            {
+                "info": {
+                    "results": "Number of search results returned."
+                },
+                results: [List of stop result]
+            }
+
+        A stop result is in the following form:
+            {
+                "id": "Unique id of this stop",
+                "routes": "List of route numbers that arrive at this stop",
+                "stop_code": "Four digit stop identifier",
+                "stop_name": "Name of this stop"
+            }
+    """
     query = urllib2.unquote(query).split('|')
-    result = search.searchByLatLon(query[0], query[1])
-
-    resp = Response(json.dumps(result), status=200, mimetype='application/json')
-    return resp
-
-"""
-    GET /about/help
-"""
-@app.route('/help', methods=['GET'])
-def show_help():
-    """
-        Main entry point of the application for mobile and desktop users.  We detect
-        if a mobile phone is in use and serve up the mobile version instead.
-    """
-    return render_template('help.html', header=True)
-
-"""
-    GET /about
-"""
-@app.route('/about', methods=['GET'])
-def show_about():
-    """
-        Main entry point of the application for mobile and desktop users.  We detect
-        if a mobile phone is in use and serve up the mobile version instead.
-    """
-    return render_template('about.html', header=True)
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-@app.route('/send_to_phone', methods=['POST'])
-def send_to_phone():
-    message = 'Find next bus times by going to http://www.thenextbusapp.com'
-    account = os.environ.get('TWILIO_ACCOUNT_SID')
-    token = os.environ.get('TWILIO_AUTH_TOKEN')
-    client = TwilioRestClient(account, token)
-
-    number = request.form['number'].strip('()-')
-    error = None
-    sms = None
-
-    # Match only numbers with 10 or 11 digits.  Otherwise throw an error.
-    if re.match('^[0-9]{10,11}$', number):
-        sms = client.sms.messages.create(
-            to=number,
-            from_='12892041646',
-            body=message)
-    else:
-        error = 'Invalid phone number.'
-
-    if sms.status == 'failed':
-        error = 'Message failed to send, please try again.'
+    searchResults = search.searchByLatLon(query[0], query[1])
 
     result = {
-        'status': 'error' if error else 'success',
-        'text': error if error else 'Successfully sent message.'
+        'info': {
+            'status': 200,
+            'results': len(searchResults)
+        },
+        'results': searchResults
     }
+
     resp = Response(json.dumps(result), status=200, mimetype='application/json')
     return resp
 
