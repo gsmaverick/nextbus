@@ -1356,12 +1356,13 @@ _.extend(Application.prototype, Backbone.Events, {
         //this.user_.save();
 
         this.view_.render();
-
+        console.log('view::render');
         //try {
             // Clear out the hash so that the back button strategy works.
             //window.location.hash = '';
 
             Backbone.history.start();
+            console.log('history start');
         //} catch (e) {
             //console.error(e);
         //}
