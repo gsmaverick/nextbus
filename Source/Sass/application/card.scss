@@ -1,3 +1,12 @@
+// ---------------
+// card.scss:
+//     - Stop title card
+//     - Responsive card holder sizing
+//     - Base styles for outer container of a route card.
+//     - Route card navigation dots
+//     - First time swipe hint
+// ---------------
+
 // Handle large screen so they're not too big!
 @media screen and (min-width: 600px) {
     .cardHolder {
@@ -9,7 +18,7 @@
         width: 360px;
         margin: 0 auto;
     }
-}
+}  // @media screen and (min-width: 600px)
 
 @media screen and (max-width: 599px) {
     .cardHolder {
@@ -19,7 +28,7 @@
     .stop .stop-title {
         margin: 0 10px;
     }
-}
+} // @media screen and (max-width: 599px)
 
 .stop .stop-title {
     display: block;
@@ -87,56 +96,6 @@
         z-index: 10;
     } // .card
 
-    .fakeCard, .card {
-        -webkit-transition: 0.25s all linear;
-
-        &.right {
-            -webkit-transform: translate3d(600px, 0, 0);
-        }
-
-        &.left {
-            -webkit-transform: translate3d(-600px, 0, 0);
-        }
-
-        .title {
-            position: relative;
-            padding: 10px;
-            box-shadow: 0 3px 3px -2px #DFDFDF;
-
-            .number {
-                display: block;
-                margin: 0;
-                padding: 6px 5px 5px 5px;
-
-                height: 26px;
-
-                color: #FFFFFF;
-                font-size: 15px;
-                line-height: 1;
-
-                box-sizing: border-box;
-
-                float: left;
-                border-radius: 2px;
-                text-align: center;
-            } // .number
-
-            h2 {
-                margin: 0 36px;
-                padding: 0;
-
-                font-size: 20px;
-                line-height: 26px;
-                letter-spacing: 1px;
-                text-align: center;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                //text-rendering: optimizeLegibility;
-            } // h2
-        } // .title
-    } // .fakeCard, .card
-
     .dots {
         list-style: none;
         margin: 10px 0 0 0;
@@ -166,101 +125,3 @@
         } // li
     } // .dots
 } // .cardHolder
-
-
-        .timez {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .timez li {
-            position: relative;
-            display: block;
-            margin: 0;
-            padding: 10px;
-
-            border-bottom: 1px solid #EFEFEF;
-        }
-
-        .timez li:first-child {
-            padding-top: 12px;
-        }
-
-        .timez li:first-child .time {
-            top: 12px;
-        }
-
-        .timez li .time {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-
-            display: inline-block;
-            padding: 0;
-            width: 50px;
-
-            color: #666;
-            font-size: 20px;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-        .timez li .name {
-            display: block;
-            width: 100%;
-            padding: 0 0 0 70px;
-            display: inline-block;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            box-sizing: border-box;
-            white-space: nowrap;
-        }
-
-        .actions .sec {
-            display: block;
-            margin: 20px 0 0 0;
-            padding: 0;
-            width: 50%;
-            float: left;
-            box-sizing: border-box;
-        }
-
-        .actions .sec:first-child { padding-right: 5px; }
-        .actions .sec:nth-child(2) { padding-left: 5px; }
-
-        .actions .sec button {
-            display: block;
-            position: relative;
-            margin: 0;
-            padding: 10px 0;
-
-            width: 100%;
-            box-sizing: border-box;
-
-            background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
-
-            border: 1px solid #E0E0E0;
-            box-shadow: 1px 1px 3px #D6D6D6;
-
-            color: #707070;
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 1;
-            text-align: left;
-            text-shadow: 1px 1px 2px #FFF;
-        }
-
-        .actions .sec button img {
-            position: absolute;
-            top: 11px;
-            left: 10px;
-
-            height: 14px;
-            width: 14px;
-        }
-
-        .actions .sec button span {
-            display: block;
-            padding-left: 29px;
-        }
