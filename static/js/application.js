@@ -1352,22 +1352,22 @@ _.extend(Application.prototype, Backbone.Events, {
 
         // Populate the UserModel if it has previously been created otherwise
         // save the model to localstorage to create it.
-        this.user_.fetch();
-        this.user_.save();
+        //this.user_.fetch();
+        //this.user_.save();
 
         this.view_.render();
 
-        try {
+        //try {
             // Clear out the hash so that the back button strategy works.
             window.location.hash = '';
 
             Backbone.history.start();
-        } catch (e) {
-            console.error(e);
-        }
+        //} catch (e) {
+            //console.error(e);
+        //}
 
-        mixpanel.register({'uuid': this.user_.get('userId')});
-        mixpanel.track('AppLoad');
+        //mixpanel.register({'uuid': this.user_.get('userId')});
+        //mixpanel.track('AppLoad');
     },
 
     /**
