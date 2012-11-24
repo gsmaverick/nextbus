@@ -7,7 +7,7 @@ window.NB = window.NB || {};
 
 window.NB.Router = Backbone.Router.extend({
     initialize: function(){
-        this.route('.*', 'notFound');
+        //this.route('.*', 'notFound');
         this.route('', 'index');
         this.route('stop/:stopId', 'showStop');
         this.route('search/*splat', 'showSearch');
@@ -1359,7 +1359,7 @@ _.extend(Application.prototype, Backbone.Events, {
 
         //try {
             // Clear out the hash so that the back button strategy works.
-            window.location.hash = '';
+            //window.location.hash = '';
 
             Backbone.history.start();
         //} catch (e) {
