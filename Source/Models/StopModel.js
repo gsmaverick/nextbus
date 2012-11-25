@@ -60,9 +60,9 @@ window.NB.StopModel = Backbone.Model.extend({
         var json = this.toJSON();
 
         json.routes = _.chain(this.get('routes'))
-        .map(function(route){ return route.toJSON(); })
-        .pluck('number')
-        .value();
+            .map(function(route){ return route.toJSON(); })
+            .pluck('number')
+            .value();
 
         return json;
     }
