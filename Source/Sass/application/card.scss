@@ -31,11 +31,12 @@
 } // @media screen and (max-width: 599px)
 
 .stop .stop-title {
+    @include border(#DEDEDE);
+
     display: block;
     padding: 5px 5px 8px 5px;
 
     border-radius: 4px 4px 0 0;
-    border: 1px solid #DEDEDE;
     border-bottom: none;
 
     box-shadow: inset 0 -3px 2px -2px #CCCCCC;
@@ -48,13 +49,12 @@
 } // .stop .stop-title
 
 .swipe-hint {
-    position: absolute;
+    @include position-absolutely(30%, 0, null, null);
+
     color: #FAFAFA;
     font-size: 18px;
     line-height: 1;
     background: rgba(20, 10, 10, 0.8);
-    right: 0;
-    top: 30%;
     font-family: Helvetica;
     font-weight: bold;
     padding: 15px 45px 15px 15px;
@@ -63,8 +63,7 @@
     box-shadow: 1px 1px 2px #222;
 
     img {
-        height: 18px;
-        width: 18px;
+        @include size(18px, 18px);
         vertical-align: text-top;
         margin: 2px 5px 0 0;
     } // img
@@ -88,11 +87,7 @@
     .card {
         // Cards are absolutely positioned so they can stack on top of each
         // other.
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-
+        @include position-absolutely(0, 0, null, 0);
         z-index: 10;
     } // .card
 
@@ -103,16 +98,14 @@
         text-align: center;
 
         li {
+            @include size(8px, 8px);
+            @include rounded-corner(8px);
+
             display: inline-block;
             margin: 0 1px;
             padding: 0;
 
-            height: 8px;
-            width: 8px;
-            border-radius: 8px;
-
             background: #EFEFEF;
-
             box-shadow: inset 0 0 2px 1px #DEDEDE;
 
             -webkit-transition: 0.25s all ease-in-out;

@@ -1,6 +1,6 @@
 /**
  * A RouteCardView displays the next bus times of a route at a stop.  It
- * auto-updates the time until arrival.
+ * auto-updates the time until arrival and remove any times that have passed.
  */
 window.NB.RouteCardView = Backbone.View.extend({
     className: 'card',
@@ -27,7 +27,7 @@ window.NB.RouteCardView = Backbone.View.extend({
         var clsName = this.index_ === 0 ? 'current' : 'right';
         this.el.classList.add(clsName);
 
-        if (!this.updateTimeout_){
+        if (!this.updateTimeout_ && this.model.get('times').length > 0){
             this.updateTimeout_ = window.setInterval(this.updateTimes_, 20000);
         }
 
@@ -52,6 +52,11 @@ window.NB.RouteCardView = Backbone.View.extend({
         this.$('.time').each(function(idx, el){
             var arrivalTime = el.getAttribute('data-arrival-time'),
                 timeUntilArrival = model.timeUntilToString(arrivalTime);
+
+            if (timeUntilArrival.length === 0){
+                $(el).remove();
+                return;
+            }
 
             $(el).html(timeUntilArrival);
         });

@@ -78,6 +78,17 @@ describe('CardView', function(){
             expect(routeCards.length).toEqual(3);
         });
 
+        it('should set h2 text in the fake card if no routes', function(){
+            model.set('routes', []);
+            $routeCardView.render.reset();
+            Sandbox.appendChild(view.render().el);
+
+            var text = view.$('.fakeCard h2').html();
+
+            expect($routeCardView.render).not.toHaveBeenCalled();
+            expect(text).toEqual('No arrivals in the next day');
+        });
+
         describe('remove', function(){
             beforeEach(function(){
                 spyOn(Backbone.View.prototype, 'remove');
@@ -117,7 +128,7 @@ describe('CardView', function(){
 
         it('should not swipe left past the last slide', function(){
             view.$('.card.current .title').trigger('swipeLeft');
-            view.$('.card.current .timez').trigger('swipeLeft');
+            view.$('.card.current .arrivals').trigger('swipeLeft');
 
             var thirdSlide = $('.card:nth-child(3)', view.el);
 
@@ -179,7 +190,7 @@ describe('CardView', function(){
             renderWithSwipeAndSlideVal(false, 2);
 
             var swipeHint = view.el.querySelector('.swipe-hint');
-            view.$('.card.current .timez').trigger('swipeLeft');
+            view.$('.card.current .arrivals').trigger('swipeLeft');
 
             expect(window.app.user_.set).toHaveBeenCalledWith(
                 'hasSwiped', true);

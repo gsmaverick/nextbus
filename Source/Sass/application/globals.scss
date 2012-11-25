@@ -53,3 +53,11 @@ $font-colour-md: #575757;
     outline: 0;
     border: 1px solid $colour;
 }
+
+// @mixin text-ellipsis
+//   - Hides any text that overflows a single line with ellipsis.
+@mixin text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

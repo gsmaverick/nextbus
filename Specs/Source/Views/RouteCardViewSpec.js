@@ -101,6 +101,13 @@ describe('RouteCardView', function(){
                     expect(content).toEqual('10m');
                 });
             });
+
+            it('should remove a time if it has passed', function(){
+                model.timeUntilToString.andReturn('');
+                view.updateTimes_();
+
+                expect(view.el.querySelector('.time')).toBeNull();
+            });
         }); // describe('updateTimes_')
     }); // describe('render')
 }); // describe('RouteCardView')

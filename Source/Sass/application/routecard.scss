@@ -21,10 +21,11 @@
         box-shadow: 0 3px 3px -2px #DFDFDF;
 
         .number {
+            @include rounded-corner(2px);
+
             display: block;
             margin: 0;
             padding: 6px 5px 5px 5px;
-
             height: 26px;
 
             color: #FFFFFF;
@@ -32,9 +33,7 @@
             line-height: 1;
 
             box-sizing: border-box;
-
             float: left;
-            border-radius: 2px;
             text-align: center;
         } // .number
 
@@ -44,7 +43,6 @@
 
             font-size: 20px;
             line-height: 26px;
-            letter-spacing: 1px;
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -73,13 +71,11 @@
             } // &:first-child
 
             .time {
+                @include position-absolutely(10px, null, null, 10px);
+
                 display: inline-block;
-                position: absolute;
                 margin: 0;
                 padding: 0;
-
-                top: 10px;
-                left: 10px;
                 width: 50px;
 
                 color: #666666;
@@ -89,14 +85,12 @@
             } // .time
 
             .name {
+                @include text-ellipsis;
+
                 display: inline-block;
                 box-sizing: border-box;
                 padding: 0 0 0 70px;
                 width: 100%;
-
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
             } // .name
         } // li
     } // .arrivals

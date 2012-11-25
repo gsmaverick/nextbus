@@ -1,16 +1,17 @@
 /**
  * CardView displays all the routes and times for a stop code.  It constructs a
- * series of subviews that can be navigated by swiping left/right on the card.
+ * series of subviews (cards) that can be navigated between by swiping
+ * left/right across the currently displayed card.
  */
 window.NB.CardView = Backbone.View.extend({
     className: 'cardHolder',
 
     events: {
-        'swipeLeft .timez':  'swipeLeftEvt_',
-        'swipeRight .timez': 'swipeRightEvt_',
+        'swipeLeft .arrivals':   'swipeLeftEvt_',
+        'swipeRight .arrivals':  'swipeRightEvt_',
 
-        'swipeLeft .title':  'swipeLeftEvt_',
-        'swipeRight .title': 'swipeRightEvt_',
+        'swipeLeft .title':      'swipeLeftEvt_',
+        'swipeRight .title':     'swipeRightEvt_',
 
         'swipeLeft .swipe-hint': 'swipeLeftEvt_'
     },
@@ -72,6 +73,10 @@ window.NB.CardView = Backbone.View.extend({
             this.routeCardViews_.push(view);
             this.$('.all-cards').append(view.render().el);
         }, this);
+
+        if (routes.length == 0){
+            this.$('.fakeCard h2').html('No arrivals in the next day');
+        }
 
         return this;
     },
