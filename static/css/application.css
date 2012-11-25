@@ -78,17 +78,17 @@ h3.error {
     background: #FFF; } }
 
 header {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   position: absolute;
   top: -165px;
-  left: 0;
   right: 0;
+  left: 0;
   z-index: 1000;
   height: 209px;
   background: white;
   border-bottom: 1px solid #CECECE;
   box-shadow: 0 0 8px #CCC;
-  -webkit-transition: 0.25s all ease-in-out;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-transition: 0.25s all ease-in-out; }
   header.open {
     top: 0; }
   header.has-back-button .back.btn {
@@ -99,15 +99,13 @@ header {
     display: none; }
   header .persistent {
     position: absolute;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     height: 44px;
     box-shadow: 0 -2px 2px #e6e6e6;
     background: #FFFFFF; }
     header .persistent .btn {
-      position: absolute;
-      top: 0;
       height: 20px;
       width: 20px; }
       header .persistent .btn img {
@@ -115,24 +113,29 @@ header {
         width: 20px;
         opacity: 0.8; }
       header .persistent .btn.expand {
+        position: absolute;
+        top: 0;
         right: 0;
         padding: 12px 12px 32px 32px; }
       header .persistent .btn.back {
-        display: none;
+        position: absolute;
+        top: 0;
         left: 0;
+        display: none;
         padding: 12px 32px 32px 12px; }
       header .persistent .btn.favourite {
-        display: none;
+        position: absolute;
+        top: 0;
         right: 0;
+        display: none;
         padding: 12px 12px 32px 32px; }
     header .persistent h1 {
-      display: block;
-      margin: 0;
-      padding: 0;
       position: absolute;
       top: 12px;
-      left: 44px;
       right: 44px;
+      left: 44px;
+      margin: 0;
+      padding: 0;
       font-family: 'Chivo', sans-serif;
       font-size: 20px;
       line-height: 1;
@@ -448,10 +451,11 @@ h2.favourites-title {
   .stop .stop-title {
     margin: 0 10px; } }
 .stop .stop-title {
+  outline: 0;
+  border: 1px solid #dedede;
   display: block;
   padding: 5px 5px 8px 5px;
   border-radius: 4px 4px 0 0;
-  border: 1px solid #DEDEDE;
   border-bottom: none;
   box-shadow: inset 0 -3px 2px -2px #cccccc;
   background: #FFF;
@@ -462,12 +466,12 @@ h2.favourites-title {
 
 .swipe-hint {
   position: absolute;
+  top: 30%;
+  right: 0;
   color: #FAFAFA;
   font-size: 18px;
   line-height: 1;
   background: rgba(20, 10, 10, 0.8);
-  right: 0;
-  top: 30%;
   font-family: Helvetica;
   font-weight: bold;
   padding: 15px 45px 15px 15px;
@@ -493,8 +497,8 @@ h2.favourites-title {
   .cardHolder .card {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     z-index: 10; }
   .cardHolder .dots {
     list-style: none;
@@ -502,12 +506,13 @@ h2.favourites-title {
     padding: 0 0 5px 0;
     text-align: center; }
     .cardHolder .dots li {
+      height: 8px;
+      width: 8px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
       display: inline-block;
       margin: 0 1px;
       padding: 0;
-      height: 8px;
-      width: 8px;
-      border-radius: 8px;
       background: #EFEFEF;
       box-shadow: inset 0 0 2px 1px #DEDEDE;
       -webkit-transition: 0.25s all ease-in-out; }
@@ -526,6 +531,8 @@ h2.favourites-title {
     padding: 10px;
     box-shadow: 0 3px 3px -2px #dfdfdf; }
     .fakeCard .title .number, .card .title .number {
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
       display: block;
       margin: 0;
       padding: 6px 5px 5px 5px;
@@ -535,14 +542,12 @@ h2.favourites-title {
       line-height: 1;
       box-sizing: border-box;
       float: left;
-      border-radius: 2px;
       text-align: center; }
     .fakeCard .title h2, .card .title h2 {
       margin: 0 36px;
       padding: 0;
       font-size: 20px;
       line-height: 26px;
-      letter-spacing: 1px;
       text-align: center;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -562,34 +567,40 @@ h2.favourites-title {
         .fakeCard .arrivals li:first-child .time, .card .arrivals li:first-child .time {
           top: 12px; }
       .fakeCard .arrivals li .time, .card .arrivals li .time {
-        display: inline-block;
         position: absolute;
-        margin: 0;
-        padding: 0;
         top: 10px;
         left: 10px;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
         width: 50px;
         color: #666666;
         font-size: 20px;
         font-weight: bold;
         line-height: 1; }
       .fakeCard .arrivals li .name, .card .arrivals li .name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         display: inline-block;
         box-sizing: border-box;
         padding: 0 0 0 70px;
-        width: 100%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap; }
+        width: 100%; }
 
 .index {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
-  bottom: 0; }
-  .index.locating .find-location button img {
-    -webkit-animation: locating 1.5s infinite linear; }
+  bottom: 0;
+  left: 0; }
+  .index.locating .find-location button {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f2f2f2), to(#fefefe));
+    background-image: -webkit-linear-gradient(top, #f2f2f2, #fefefe);
+    background-image: linear-gradient(to bottom, #f2f2f2, #fefefe); }
+    .index.locating .find-location button img {
+      -webkit-animation: locating 1.5s infinite linear; }
+  .index * {
+    box-sizing: border-box; }
   .index h1 {
     margin: 15px 0;
     color: #434343;
@@ -598,40 +609,39 @@ h2.favourites-title {
     text-transform: uppercase;
     text-align: center; }
   .index .input-holder {
+    outline: 0;
+    border: 1px solid #dddddd;
     margin: 0 10px;
     padding: 8px;
     background: #FFF;
-    border: 1px solid #DDD;
     box-shadow: 0 0 5px #CCC; }
     .index .input-holder input {
+      font-size: 16px;
+      line-height: 30px;
+      outline: 0;
+      border: 1px solid #ededed;
+      display: block;
       margin: 0;
       padding: 0 6px;
-      box-sizing: border-box;
       width: 100%;
-      display: block;
-      border: 1px solid #EDEDED;
-      outline: 0;
-      color: #333;
-      font-size: 16px;
-      line-height: 30px; }
+      color: #323232; }
       .index .input-holder input::-webkit-input-placeholder {
         font-size: 16px;
         line-height: 30px;
         color: #AAA; }
   .index .divider {
-    box-sizing: border-box;
-    overflow: hidden;
-    margin: 0 20px; }
+    margin: 0 20px;
+    overflow: hidden; }
     .index .divider .or {
       position: relative;
       margin: 30px 0;
       height: 2px; }
       .index .divider .or span {
-        display: block;
         position: absolute;
         top: -8px;
-        left: 0;
         right: 0;
+        left: 0;
+        display: block;
         text-align: center;
         font-weight: bold;
         font-size: 16px;
@@ -640,7 +650,6 @@ h2.favourites-title {
         text-shadow: 0 0 1px #FFF; }
       .index .divider .or .left, .index .divider .or .right {
         position: absolute;
-        box-sizing: border-box;
         width: 40%;
         border-top: 1px solid #999;
         border-bottom: 1px solid #EFEFEF; }
@@ -651,22 +660,26 @@ h2.favourites-title {
   .index .find-location {
     margin: 0 10px; }
     .index .find-location button {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fefefe), to(#f2f2f2));
+      background-image: -webkit-linear-gradient(top, #fefefe, #f2f2f2);
+      background-image: linear-gradient(to bottom, #fefefe, #f2f2f2);
+      outline: 0;
+      border: 1px solid #dedede;
       position: relative;
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
       margin: 0;
       padding: 15px 0;
-      outline: 0;
-      border: 1px solid #DEDEDE;
+      width: 100%;
       color: #575757;
       font-weight: bold;
       font-size: 16px;
       line-height: 1;
       text-shadow: 1px 1px 1px #FFF;
-      box-shadow: 1px 1px 2px #CCC;
-      background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#f2f2f2));
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+      box-shadow: 1px 1px 2px #CCC; }
+      .index .find-location button:active {
+        background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f2f2f2), to(#fefefe));
+        background-image: -webkit-linear-gradient(top, #f2f2f2, #fefefe);
+        background-image: linear-gradient(to bottom, #f2f2f2, #fefefe); }
       .index .find-location button img {
         position: absolute;
         top: 13px;
@@ -677,9 +690,9 @@ h2.favourites-title {
         opacity: 0.35; }
   .index .footer {
     position: absolute;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     margin: 0;
     padding: 5px 10px;
     background: white;
@@ -688,15 +701,15 @@ h2.favourites-title {
     font-size: 14px;
     line-height: 2; }
     .index .footer .link {
+      float: right;
       margin: 0 0 0 5px;
       padding: 0 5px;
-      float: right;
-      color: #676767; }
+      color: #575757; }
       .index .footer .link:last-child {
         margin: 0 5px;
         padding: 0 5px; }
     .index .footer .copyright {
-      color: #878787; }
+      color: #575757; }
 
 .search {
   margin: 0 0 30px 0;
