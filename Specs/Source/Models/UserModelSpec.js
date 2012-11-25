@@ -84,7 +84,7 @@ describe('UserModel', function(){
     describe('favouriting', function(){
         var $changeCallback, $stopModel;
         var stopAttrs = {
-            id: '1183',
+            id: 1183,
             name: 'Test',
             routes: [1]
         };
@@ -132,7 +132,7 @@ describe('UserModel', function(){
         });
 
         it('should return whether a stop code is favourited', function(){
-            model.set('favourites', [{'id': '1183'}]);
+            model.set('favourites', [{'id': 1183}]);
 
             expect(model.isFavourite('1183')).toBeTruthy();
             expect(model.isFavourite('1283')).toBeFalsy();

@@ -10,7 +10,7 @@ describe('FavouriteStarView', function(){
 
         model = new window.NB.UserModel({
             userId: "8cd606f2-1269-4665-bede-4b6f92cbe9c1",
-            favourites: ['1183', '1113']
+            favourites: [1183, 1113]
         });
         spyOn(model, 'on').andCallThrough();
         spyOn(model, 'off').andCallThrough();
@@ -56,7 +56,7 @@ describe('FavouriteStarView', function(){
             ]);
             $stopModel.loaded = true;
             $stopModel.jsonifyForFavourites.andReturn({
-                id: '1234',
+                id: 1234,
                 name: 'Test',
                 routes: [1]
             });
@@ -74,14 +74,14 @@ describe('FavouriteStarView', function(){
                 img = view.$('img');
 
             img.trigger('click');
-            idx = _.pluck(model.get('favourites'), 'id').indexOf('1234');
+            idx = _.pluck(model.get('favourites'), 'id').indexOf(1234);
             src = img.attr('src');
 
             expect(idx).not.toBe(-1);
             expect(src).not.toContain('unstarred');
 
             img.trigger('click');
-            idx = _.pluck(model.get('favourites'), 'id').indexOf('1234');
+            idx = _.pluck(model.get('favourites'), 'id').indexOf(1234);
             src = img.attr('src');
 
             expect(idx).toBe(-1);

@@ -90,7 +90,7 @@ window.NB.UserModel = Backbone.Model.extend({
     toggleFavourite: function(stop_id){
         var favourites = _.clone(this.get('favourites')),
             favIds = _.pluck(favourites, 'id'),
-            index = favIds.indexOf(stop_id);
+            index = favIds.indexOf(+stop_id);
 
         if (index !== -1){
             favourites.splice(index, 1);
@@ -129,6 +129,6 @@ window.NB.UserModel = Backbone.Model.extend({
     isFavourite: function(stop_id){
         var favourites = _.pluck(this.get('favourites'), 'id');
 
-        return favourites.indexOf(stop_id) !== -1;
+        return favourites.indexOf(+stop_id) !== -1;
     }
 });
