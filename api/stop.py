@@ -1,6 +1,9 @@
 from sqlalchemy import select, and_
 from . import db, schema, easternTime
 
+# Column names for each of the days of the week in the database.
+_days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday']
+
 def getStopInformation(stop_id):
     """
         Returns a dictionary containing all the information regarding the stop
@@ -61,39 +64,20 @@ def _getStopTimesForRouteStop(route, after_time, conn, num=5):
         :param conn: Database connection to use.
         :param num: Number of stop times to return.
     """
-    _days = [
-        'sunday','monday','tuesday','wednesday','thursday','friday','saturday'
-    ]
     today = _days[int(easternTime().strftime('%w'))]
     tomorrow = _days[(int(easternTime().strftime('%w')) + 1) % 7]
 
-    times_query = select(
-        [schema.stop_times.c.stop_time, schema.stop_times.c.endpoint],
-        and_(
-            schema.stop_times.c.stop_id == route['stop_id'],
-            schema.stop_times.c.route_name == route['route_name'],
-            schema.stop_times.c.stop_time > after_time,
-            schema.stop_times.c[today] == True
-        )
-    ).order_by(schema.stop_times.c.stop_time.asc()).limit(num)
+    times = _stopTimesForDay(route, today, after_time, conn, num)
 
-    # Get the first five after the new day has dawned just in case less than
-    # `num` stops are left in the current day.
-    secondary_query = select(
-        [schema.stop_times.c.stop_time, schema.stop_times.c.endpoint],
-        and_(
-            schema.stop_times.c.stop_id == route['stop_id'],
-            schema.stop_times.c.route_name == route['route_name'],
-            schema.stop_times.c[tomorrow] == True
-        )
-    ).order_by(schema.stop_times.c.stop_time.asc()).limit(num)
+    stop_times = [_zipRow(t) for t in times]
 
-    times_result = conn.execute(times_query).fetchall()
-    secondary_result = conn.execute(secondary_query).fetchall()
+    # If there aren't enough stop times today then try and backfill with stop
+    # times from tomorrow.
+    if len(stop_times) < num:
+        times = _stopTimesForDay(route, tomorrow, '00:00:00', conn, num)
+        secondary = [_addDayToArrivalTime(_zipRow(t)) for t in times]
 
-    times     = [_zipRow(t) for t in times_result]
-    secondary = [_addDayToArrivalTime(_zipRow(t)) for t in secondary_result]
-    stop_times = (times + secondary)[:5]
+        stop_times = (stop_times + secondary)[:num]
 
     if len(stop_times) == 0:
         return None
@@ -103,6 +87,27 @@ def _getStopTimesForRouteStop(route, after_time, conn, num=5):
         'number': route['route_number'],
         'times': stop_times
     }
+
+def _stopTimesForDay(route, day, after_time, conn, num=5):
+    """
+        Returns all stop times for this route object on the given day and time.
+
+        :param route: Route row object from the database.
+        :param day: Which day of the week to find stops for.
+        :param conn: Database connection object
+        :param num: Number of results to return
+    """
+    query = select(
+        [schema.stop_times.c.stop_time, schema.stop_times.c.endpoint],
+        and_(
+            schema.stop_times.c.stop_id == route['stop_id'],
+            schema.stop_times.c.route_name == route['route_name'],
+            schema.stop_times.c.stop_time > after_time,
+            schema.stop_times.c[day] == True
+        )
+    ).order_by(schema.stop_times.c.stop_time.asc()).limit(num)
+
+    return conn.execute(query).fetchall()
 
 def _addDayToArrivalTime(stop_time):
     """
