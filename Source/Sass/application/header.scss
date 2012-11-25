@@ -1,9 +1,15 @@
-// This is the application-wide top header that also contains the settings menu.
+// ---------------
+// header.scss:
+//     - Persistent application-wide header bar with title and buttons
+//     - Base styling for the favourites container
+//     - Animation for header open/close
+// ---------------
+
+@import "globals";
+
 header {
-    position: absolute;
-    top: -165px;
-    left: 0;
-    right: 0;
+    @include no-tap-highlight;
+    @include position-absolutely(-165px, 0, null, 0);
 
     z-index: 1000;
     height: 209px;
@@ -11,9 +17,7 @@ header {
     background: white;
     border-bottom: 1px solid #CECECE;
     box-shadow: 0 0 8px #CCC;
-
     -webkit-transition: 0.25s all ease-in-out;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
 
     &.open {
         top: 0;
@@ -22,36 +26,29 @@ header {
     &.has-back-button {
         .back.btn {
             display: block !important;
-        }
+        } // .back.btn
     } // &.has-back-button
 
     &.has-favourite-button {
         .favourite.btn {
             display: block !important;
-        } // .favourite-btn
+        } // .favourite.btn
 
         .expand.btn {
             display: none;
-        } // .reveal-btn
+        } // .expand.btn
     } // &.has-favourite-button
 
     .persistent {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        @include position-absolutely(null, 0, 0, 0);
 
         height: 44px;
         box-shadow: 0 -2px 2px #E6E6E6;
         background: #FFFFFF;
 
         .btn {
-            position: absolute;
-            top: 0;
-
             height: 20px;
             width: 20px;
-            padding: 12px;
 
             img {
                 height: 20px;
@@ -60,29 +57,27 @@ header {
             } // img
 
             &.expand {
-                right: 0;
-            } // .expand-btn
+                @include position-absolutely(0, 0, null, null);
+                padding: 12px 12px 32px 32px;
+            } // &.expand
 
             &.back {
+                @include position-absolutely(0, null, null, 0);
                 display: none;
-                left: 0;
-            } // .back-btn
+                padding: 12px 32px 32px 12px;
+            } // &.back
 
             &.favourite {
+                @include position-absolutely(0, 0, null, null);
                 display: none;
-                right: 0;
-            }
+                padding: 12px 12px 32px 32px;
+            } // &.favourite
         } // .btn
 
         h1 {
-            display: block;
+            @include position-absolutely(12px, 44px, null, 44px);
             margin: 0;
             padding: 0;
-
-            position: absolute;
-            top: 12px;
-            left: 44px;
-            right: 44px;
 
             font-family: 'Chivo', sans-serif;
             font-size: 20px;

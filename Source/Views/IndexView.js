@@ -1,7 +1,7 @@
 /**
  * IndexView is the main index page of the application.  It lets the user enter
  * a stop code/name in a form or find stop nearby via geolocation.  It also
- * displays the footer contents.
+ * displays the footer contents which link to the About and Help pages.
  */
 window.NB.IndexView = Backbone.View.extend({
     className: 'index',
@@ -18,6 +18,7 @@ window.NB.IndexView = Backbone.View.extend({
     gpsInProgress_: false,
 
     initialize: function(){
+        // Bind early to make testing easier.
         this.geoSuccessEvt_ = this.geoSuccessEvt_.bind(this);
         this.geoErrorEvt_ = this.geoErrorEvt_.bind(this);
     },
@@ -40,8 +41,14 @@ window.NB.IndexView = Backbone.View.extend({
 
         this.el.classList.add('locating');
 
+        var geolocationOptions = {
+            maximumAge: 300000,
+            timeout: 5000,
+            enableHighAccuracy: true
+        };
+
         navigator.geolocation.getCurrentPosition(
-            this.geoSuccessEvt_, this.geoErrorEvt_, {maximumAge: 300000}
+            this.geoSuccessEvt_, this.geoErrorEvt_, geolocationOptions
         );
 
         this.gpsInProgress_ = true;
@@ -52,13 +59,14 @@ window.NB.IndexView = Backbone.View.extend({
      * or stop name.
      *
      * @param {Event}
+     * @returns {Boolean}
      */
     formSubmitEvt_: function(evt){
         evt.preventDefault();
 
-        var inputVal = encodeURIComponent(this.$('.user_input').val());
+        var inputVal = encodeURIComponent(this.$('form input').val());
 
-        app.getRouter().navigate('search/' + inputVal, { trigger: true });
+        app.getRouter().navigate('search/' + inputVal, {trigger: true});
 
         mixpanel.track('formSubmit', {
             query: inputVal
@@ -94,13 +102,15 @@ window.NB.IndexView = Backbone.View.extend({
         this.el.classList.remove('locating');
         this.gpsInProgress_ = false;
 
-        if (err.code == 1){
-            alert('Permission denied: Could not acquire current location.');
-        } else if (err.code == 2){
-            var msg = 'Could not determine current location.  Ensure location' +
-                ' services are enabled.';
-            alert(msg);
-        }
+        var messages = [
+            'Could not determine current location due to an error.',
+            'Permission denied: Could not acquire current location.',
+            'Could not determine current location.  Ensure location services ' +
+                'are enabled.',
+            'Could not determine current location because the GPS didn\'t ' +
+                'respond in time.'
+        ];
+        alert(messages[err.code]);
 
         mixpanel.track('geoError', {
             code: err.code,
