@@ -47,7 +47,7 @@ describe('HeaderView', function(){
             var title = view.$('h1');
 
             expect(title).not.toBeNull();
-            expect(title.html()).toEqual('nextbus');
+            expect(title.html()).toEqual('busticker');
         });
 
         it('the header should not have the open class', function(){

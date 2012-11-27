@@ -22,7 +22,7 @@ $font-colour-md: #575757;
 
 // @mixin position-absolutely($top, $right, $bottom, $left)
 //   - Position an element absolute with the given positioning values.
-@mixin position-absolutely($top, $right, $bottom, $left) {
+@mixin position-absolutely($top:null, $right:null, $bottom:null, $left:null) {
     position: absolute;
     @if $top { top: $top; }
     @if $right { right: $right; }

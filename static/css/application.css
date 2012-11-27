@@ -328,12 +328,15 @@ h2.favourites-title {
     top: 0;
     right: 7px; }
     h2.favourites-title .actions .prev, h2.favourites-title .actions .next {
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fefefe), to(#ededed));
+      background-image: -webkit-linear-gradient(top, #fefefe, #ededed);
+      background-image: linear-gradient(to bottom, #fefefe, #ededed);
+      outline: 0;
+      border: 1px solid #dddddd;
       display: block;
-      float: left;
       margin: 7px 0;
       padding: 7px 18px;
-      border: 1px solid #DDD;
-      background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#ededed)); }
+      float: left; }
       h2.favourites-title .actions .prev.disabled, h2.favourites-title .actions .next.disabled {
         pointer-events: none;
         opacity: 0.5; }
@@ -373,21 +376,21 @@ h2.favourites-title {
     .favourites-list li .number {
       margin: 3px 5px 0 0; }
     .favourites-list li h3 {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       display: block;
       margin: 0;
       padding: 0 16px 0 0;
       font-size: 16px;
-      line-height: 1;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis; }
+      line-height: 1; }
   .favourites-list li.empty {
-    background: white;
-    box-sizing: border-box;
     height: 115px;
     width: 286px;
+    margin: 0 auto;
     padding: 20px 0;
-    margin: 0 auto; }
+    box-sizing: border-box;
+    background: white; }
     .favourites-list li.empty .left {
       float: left;
       width: 200px;
@@ -405,26 +408,30 @@ h2.favourites-title {
         font-size: 14px;
         line-height: 1.5; }
     .favourites-list li.empty .bubble {
-      position: relative;
-      float: left;
-      margin: 0;
       height: 64px;
       width: 64px;
+      -webkit-border-radius: 60px;
       border-radius: 60px;
-      background: rgba(142, 145, 128, 0.07);
+      outline: 0;
       border: 1px solid rgba(92, 95, 78, 0.1);
-      box-shadow: 0 0 5px 2px #F6F6F6;
-      overflow: hidden; }
+      position: relative;
+      margin: 0;
+      float: left;
+      overflow: hidden;
+      background: rgba(142, 145, 128, 0.07);
+      box-shadow: 0 0 5px 2px #F6F6F6; }
       .favourites-list li.empty .bubble .inner {
         position: absolute;
-        width: 56px;
-        height: 56px;
         top: 3px;
         left: 3px;
+        height: 56px;
+        width: 56px;
+        -webkit-border-radius: 30px;
+        border-radius: 30px;
+        outline: 0;
+        border: 1px solid rgba(92, 95, 78, 0.02);
         z-index: 10;
         background: transparent;
-        border-radius: 30px;
-        border: 1px solid rgba(92, 95, 78, 0.02);
         overflow: hidden;
         box-shadow: inset 0 0 15px rgba(92, 95, 78, 0.45); }
       .favourites-list li.empty .bubble img {
@@ -433,6 +440,7 @@ h2.favourites-title {
         left: 4px;
         height: 56px;
         width: 56px;
+        -webkit-border-radius: 100px;
         border-radius: 100px;
         z-index: 2; }
 

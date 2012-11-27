@@ -5,7 +5,7 @@ TWILIO_ACCOUNT = os.environ.get('TWILIO_ACCOUNT_SID')
 TWILIO_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
 
 # Contents of the SMS that will be sent out to the user.
-MESSAGE = 'Find next bus times by going to http://www.thenextbusapp.com'
+MESSAGE = 'Find next bus times by going to http://www.bustickerapp.com'
 
 # Number to send the SMS message from.
 FROM_NUMBER = '12892041646'
