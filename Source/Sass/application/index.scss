@@ -134,6 +134,20 @@
         } // button
     } // .findLocation
 
+    .notice {
+        display: block;
+        margin: 40px 10px 20px 10px;
+        padding: 6px 4px;
+
+        color: #323232;
+        font-weight: bold;
+        text-shadow: 0 1px 1px #FCE5B0;
+        text-align: center;
+
+        background: #FBDF9D;
+        border: 2px solid #EBA709;
+    } // .notice
+
     .footer {
         @include position-absolutely(null, 0, 0, 0);
 

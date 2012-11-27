@@ -696,6 +696,16 @@ h2.favourites-title {
         width: 16px;
         -webkit-transform: rotate(53deg);
         opacity: 0.35; }
+  .index .notice {
+    display: block;
+    margin: 40px 10px 20px 10px;
+    padding: 6px 4px;
+    color: #323232;
+    font-weight: bold;
+    text-shadow: 0 1px 1px #FCE5B0;
+    text-align: center;
+    background: #FBDF9D;
+    border: 2px solid #EBA709; }
   .index .footer {
     position: absolute;
     right: 0;
