@@ -54,7 +54,7 @@ window.NB.RouteCardView = Backbone.View.extend({
                 timeUntilArrival = model.timeUntilToString(arrivalTime);
 
             if (timeUntilArrival.length === 0){
-                $(el).remove();
+                $(el).parent().remove();
                 return;
             }
 

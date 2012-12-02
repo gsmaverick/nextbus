@@ -18,6 +18,7 @@
     .title {
         position: relative;
         padding: 10px;
+        height: 26px; // Force the title bar to be this tall.
         box-shadow: 0 3px 3px -2px #DFDFDF;
 
         .number {
@@ -38,7 +39,9 @@
         } // .number
 
         h2 {
-            margin: 0 36px;
+            @include position-absolutely(10px, 10px, null, 36px);
+
+            margin: 0;
             padding: 0;
 
             font-size: 20px;
@@ -61,14 +64,6 @@
             margin: 0;
             padding: 10px;
             border-bottom: 1px solid #EFEFEF;
-
-            &:first-child {
-                padding-top: 12px;
-
-                .time {
-                    top: 12px;
-                }
-            } // &:first-child
 
             .time {
                 @include position-absolutely(10px, null, null, 10px);

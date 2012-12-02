@@ -18,6 +18,7 @@ header {
     border-bottom: 1px solid #CECECE;
     box-shadow: 0 0 8px #CCC;
     -webkit-transition: 0.25s all ease-in-out;
+    -webkit-transform: translateZ(0);
 
     &.open {
         top: 0;

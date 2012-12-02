@@ -106,7 +106,7 @@ describe('RouteCardView', function(){
                 model.timeUntilToString.andReturn('');
                 view.updateTimes_();
 
-                expect(view.el.querySelector('.time')).toBeNull();
+                expect(view.el.querySelector('li')).toBeNull();
             });
         }); // describe('updateTimes_')
     }); // describe('render')
