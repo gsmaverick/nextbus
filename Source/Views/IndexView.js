@@ -19,8 +19,8 @@ window.NB.IndexView = Backbone.View.extend({
 
     initialize: function(){
         // Bind early to make testing easier.
-        this.geoSuccessEvt_ = this.geoSuccessEvt_.bind(this);
-        this.geoErrorEvt_ = this.geoErrorEvt_.bind(this);
+        this.geoSuccessEvt_ = _.bind(this.geoSuccessEvt_, this);
+        this.geoErrorEvt_ = _.bind(this.geoErrorEvt_, this);
     },
 
     render: function(){

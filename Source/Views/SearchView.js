@@ -16,7 +16,7 @@ window.NB.SearchView = Backbone.View.extend({
 
     initialize: function(){
         // For easier unit testing.
-        this.fetchError_ = this.fetchError_.bind(this);
+        this.fetchError_ = _.bind(this.fetchError_, this);
 
         this.model.on('reset change', this.render, this);
     },
