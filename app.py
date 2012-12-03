@@ -50,8 +50,8 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
         'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/cache.manifest')
-def favicon():
+@app.route('/app.manifest')
+def cache_manifest():
     return send_from_directory(os.path.join(app.root_path, 'static'),
         'cache.manifest', mimetype='text/cache-manifest')
 
@@ -88,6 +88,8 @@ def show_stop(stop_id):
             'id': stop_id,
             'stop_code': stop_info['code'],
             'stop_name': stop_info['name'],
+            'lat': float(stop_info['lat']),
+            'lon': float(stop_info['lon']),
             'status': 200,
             'routes': len(stop_times)
         },
