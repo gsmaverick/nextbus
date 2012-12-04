@@ -61,3 +61,12 @@ $font-colour-md: #575757;
     overflow: hidden;
     white-space: nowrap;
 }
+
+// @mixin gpu-it
+//   - Forces the element to be GPU-accelerated and always kept in memory.  This
+//     is also used to fix problems with position: relative elements not being
+//     properly rendered inside a touch scrolling container.
+@mixin gpu-it {
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+}

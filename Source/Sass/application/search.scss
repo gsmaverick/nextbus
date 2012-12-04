@@ -25,11 +25,14 @@
     } // .no-results
 
     .result {
+        @include gpu-it;
+
         position: relative;
         margin: 0 0 20px 0;
         padding: 0;
 
         .box {
+            @include gpu-it;
             position: relative;
             width: 100%;
             height: 67px;

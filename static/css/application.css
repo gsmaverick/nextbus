@@ -775,10 +775,14 @@ h2.favourites-title {
     .search .no-results .query {
       color: #434343; }
   .search .result {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     position: relative;
     margin: 0 0 20px 0;
     padding: 0; }
     .search .result .box {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
       position: relative;
       width: 100%;
       height: 67px;
