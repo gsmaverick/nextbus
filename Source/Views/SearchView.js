@@ -29,6 +29,8 @@ window.NB.SearchView = Backbone.View.extend({
                 error: this.fetchError_
             });
 
+            mixpanel.track('searchResultsViewed');
+
             return this;
         }
 

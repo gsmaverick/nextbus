@@ -41,6 +41,10 @@ describe('SearchView', function(){
             });
         });
 
+        it('should send an analytics event', function(){
+            expect(mixpanel.track).toHaveBeenCalledWith('searchResultsViewed');
+        });
+
         it('should show an error message', function(){
             request = mostRecentAjaxRequest();
             request.response(TestResponses.models.search.error);

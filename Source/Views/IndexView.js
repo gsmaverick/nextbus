@@ -68,10 +68,6 @@ window.NB.IndexView = Backbone.View.extend({
 
         app.getRouter().navigate('search/' + inputVal, {trigger: true});
 
-        mixpanel.track('formSubmit', {
-            query: inputVal
-        });
-
         return false;
     },
 
@@ -89,8 +85,6 @@ window.NB.IndexView = Backbone.View.extend({
         app.getRouter().navigate('search/' + encodeURIComponent(param), {
             trigger: true
         });
-
-        mixpanel.track('geoSuccess');
     },
 
     /**

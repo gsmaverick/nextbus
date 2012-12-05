@@ -92,8 +92,6 @@ window.NB.HeaderView = Backbone.View.extend({
      */
     expandHeaderEvt_: function(){
         this.el.classList.toggle('open');
-
-        mixpanel.track('openHeader');
     },
 
     /**

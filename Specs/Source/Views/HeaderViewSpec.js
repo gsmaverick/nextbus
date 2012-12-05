@@ -105,7 +105,6 @@ describe('HeaderView', function(){
                 view.$('.expand').trigger('click');
 
                 expect(view.el.classList.contains('open')).toBeTruthy();
-                expect(mixpanel.track).toHaveBeenCalledWith('openHeader');
             });
         }); // describe('ui events')
 

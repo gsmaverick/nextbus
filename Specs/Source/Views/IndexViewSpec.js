@@ -22,9 +22,6 @@ describe('IndexView', function(){
 
             expect(router.navigate).toHaveBeenCalledWith(
                 'search/university%20life', {trigger: true});
-            expect(mixpanel.track).toHaveBeenCalledWith('formSubmit', {
-                query: 'university%20life'
-            });
 
             $('.input-holder input', Sandbox).val('11844');
             $('form', Sandbox).trigger('submit');
@@ -152,7 +149,6 @@ describe('IndexView', function(){
                     'search/1%7C1', {trigger: true});
                 expect(view.el.classList.contains('locating')).toBeFalsy();
                 expect(view.gpsInProgress_).toBeFalsy();
-                expect(mixpanel.track).toHaveBeenCalledWith('geoSuccess');
             });
         }); // describe('geolocation')
     }); // describe('user actions')

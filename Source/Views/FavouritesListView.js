@@ -139,7 +139,5 @@ window.NB.FavouritesListView = Backbone.View.extend({
             this.currentPage_ === (this.numPages_ - 1));
 
         this.renderFavouritesPage_();
-
-        mixpanel.track('navigateFavourites');
     }
 });
