@@ -52,6 +52,9 @@ def favicon():
 
 @app.route('/app.manifest')
 def cache_manifest():
+    if os.environ.get('ENVIRONMENT_TYPE') == 'dev':
+        return Response('', status=404, mimetype='text/html')
+
     return send_from_directory(os.path.join(app.root_path, 'static'),
         'cache.manifest', mimetype='text/cache-manifest')
 
@@ -157,7 +160,7 @@ def geo_search(query):
             }
     """
     query = urllib2.unquote(query).split('|')
-    searchResults = search.searchByLatLon(query[0], query[1])
+    searchResults = search.searchByLatLon(query[0], query[1], 10)
 
     result = {
         'info': {
