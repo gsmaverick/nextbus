@@ -94,6 +94,14 @@ describe('StopView', function(){
                     expect(router.navigate).toHaveBeenCalledWith(
                         'search/JOHN%20at%20CHARLTON', {trigger:true});
                 });
+
+                it('should send a mixpanel event', function(){
+                    view.$('.additional-stops button').trigger('click');
+
+                    expect(mixpanel.track).toHaveBeenCalledWith(
+                        'findAdditionalStops');
+                });
+
             }); // describe('hasAdditionalStops')
 
             describe('remove', function(){

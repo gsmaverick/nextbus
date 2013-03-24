@@ -5,9 +5,14 @@
 <% if (get('hasAdditionalStops')) { %>
 <div class="additional-stops">
     <button>
-        More routes at this stop
+        More Buses at #<%= get('code') %>
 
         <img src="/static/img/next.png" class="img-next"/>
     </button>
 </div>
 <% } %>
+
+<!--<div class="map">
+    <h3>Stop Map</h3>
+    <img src="<%= googleMapsImage_() %>" />
+</div>-->

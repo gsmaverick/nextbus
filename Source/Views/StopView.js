@@ -60,6 +60,8 @@ window.NB.StopView = Backbone.View.extend({
     findAdditionalStops_: function(evt){
         var query = encodeURIComponent(this.model.get('name'));
 
+        mixpanel.track('findAdditionalStops');
+
         app.getRouter().navigate('search/' + query, {trigger: true});
     }
 });
