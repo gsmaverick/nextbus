@@ -54,6 +54,28 @@ def getStopTimesByStopId(stop_id):
 
     return routes
 
+def hasMultipleRoutes(stop_id, stop_info):
+    """
+        Checks whether the stop name referred to by the stop has other route
+        stops.  Returns False if this is the only stop_id at the stop name True
+        otherwise.
+
+        :param stop_id: Stop id for the requested stop.
+        :param stop_info: Dict of stop info as returned from getStopInformation.
+    """
+    conn = db.connect()
+
+    query = select([schema.stops.c.id], and_(
+            schema.stops.c.name == stop_info['name'],
+            schema.stops.c.id != stop_id
+    ))
+
+    first = conn.execute(query).fetchone()
+
+    return first is not None
+
+
+
 def _getStopTimesForRouteStop(route, after_time, conn, num=5):
     """
         Returns an object with the route information and a list containing the

@@ -1,0 +1,72 @@
+// ---------------
+// globals.scss:
+//     - Application-wide mixins
+//     - Global variable definitions for typography and colours.
+// ---------------
+
+$font-colour-dk: #323232;
+$font-colour-md: #575757;
+
+// @mixin no-tap-highlight
+//   - Removes the highlight put on tappable elements by mobile browsers.
+@mixin no-tap-highlight {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+// @mixin rounded-corner($radius)
+//   - Adds border-radius to given element with $radius rounded corners
+@mixin rounded-corner($radius) {
+    -webkit-border-radius: $radius;
+            border-radius: $radius;
+}
+
+// @mixin position-absolutely($top, $right, $bottom, $left)
+//   - Position an element absolute with the given positioning values.
+@mixin position-absolutely($top:null, $right:null, $bottom:null, $left:null) {
+    position: absolute;
+    @if $top { top: $top; }
+    @if $right { right: $right; }
+    @if $bottom { bottom: $bottom; }
+    @if $left { left: $left; }
+}
+
+// @mixin size($height, $width)
+//   - Set height and width of an element with the given values.
+@mixin size($height, $width) {
+    height: $height;
+    width: $width;
+}
+
+// @mixin gradient($from, $to)
+//   - Create a gradient from the top of an element to the bottom in a cross
+//     browser fashion.
+@mixin gradient($from, $to) {
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to));
+   background-image: -webkit-linear-gradient(top, $from, $to);
+   background-image: linear-gradient(to bottom, $from, $to);
+}
+
+// @mixin border($colour)
+//   - Creates a 1px border with the given colour and resets the element's
+//     outline value to 0.
+@mixin border($colour) {
+    outline: 0;
+    border: 1px solid $colour;
+}
+
+// @mixin text-ellipsis
+//   - Hides any text that overflows a single line with ellipsis.
+@mixin text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+// @mixin gpu-it
+//   - Forces the element to be GPU-accelerated and always kept in memory.  This
+//     is also used to fix problems with position: relative elements not being
+//     properly rendered inside a touch scrolling container.
+@mixin gpu-it {
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+}

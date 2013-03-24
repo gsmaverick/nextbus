@@ -1,3 +1,13 @@
 <h2 class="stop-title">#<%= get('code') %>: <%= get('name') %></h2>
 
 <div class="card"></div>
+
+<% if (get('hasAdditionalStops')) { %>
+<div class="additional-stops">
+    <button>
+        More routes at this stop
+
+        <img src="/static/img/next.png" class="img-next"/>
+    </button>
+</div>
+<% } %>

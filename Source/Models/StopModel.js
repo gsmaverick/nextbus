@@ -20,6 +20,12 @@ window.NB.StopModel = Backbone.Model.extend({
          * this stop.
          */
         routes: null,
+
+        /**
+         * @type {Boolean} Whether or not there are additional routes that also
+         * pass by this stop but have a different stopId.
+         */
+        hasAdditionalStops: null
     },
 
     urlRoot: '/api/stops',
@@ -36,6 +42,7 @@ window.NB.StopModel = Backbone.Model.extend({
         response.id = resp.info.id;
         response.code = resp.info.stop_code;
         response.name = resp.info.stop_name;
+        response.hasAdditionalStops = resp.info.hasAdditionalStops;
 
         // Construct the list of routes for this stop.
         response.routes = [];

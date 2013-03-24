@@ -15,6 +15,10 @@ window.NB.StopView = Backbone.View.extend({
      */
     cardView_: null,
 
+    events: {
+        'click .additional-stops button': 'findAdditionalStops_'
+    },
+
     initialize: function(){
         this.model.on('change reset', this.render, this);
     },
@@ -46,5 +50,16 @@ window.NB.StopView = Backbone.View.extend({
 
         // Call super.
         Backbone.View.prototype.remove.apply(this, arguments);
+    },
+
+    /**
+     * Creates a search query for additional routes that pass by this stop.
+     *
+     * @param {Event}
+     */
+    findAdditionalStops_: function(evt){
+        var query = encodeURIComponent(this.model.get('name'));
+
+        app.getRouter().navigate('search/' + query, {trigger: true});
     }
 });

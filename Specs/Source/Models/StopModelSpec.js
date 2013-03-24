@@ -10,6 +10,7 @@ describe('StopModel', function(){
         expect(model.get('code')).toBeNull();
         expect(model.get('name')).toBeNull();
         expect(model.get('routes')).toBeNull();
+        expect(model.get('hasAdditionalStops')).toBeNull();
 
         expect(model.loaded).toBeFalsy();
     });
@@ -35,6 +36,7 @@ describe('StopModel', function(){
             expect(model.get('id')).toEqual(1785);
             expect(model.get('code')).toEqual(2097);
             expect(model.get('routes').length).toBe(3);
+            expect(model.get('hasAdditionalStops')).toBeFalsy();
         });
 
         it('should return an object for jsonifyForFavourites', function(){

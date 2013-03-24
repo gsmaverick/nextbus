@@ -85,6 +85,7 @@ def show_stop(stop_id):
     """
     stop_times = stop.getStopTimesByStopId(stop_id)
     stop_info = stop.getStopInformation(stop_id)
+    additional_stops = stop.hasMultipleRoutes(stop_id, stop_info)
 
     result = {
         'info': {
@@ -94,7 +95,8 @@ def show_stop(stop_id):
             'lat': float(stop_info['lat']),
             'lon': float(stop_info['lon']),
             'status': 200,
-            'routes': len(stop_times)
+            'routes': len(stop_times),
+            'hasAdditionalStops': additional_stops
         },
         'routes': stop_times
     }

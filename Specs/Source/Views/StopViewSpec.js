@@ -2,6 +2,8 @@ describe('StopView', function(){
     var view, model, $cardView;
 
     beforeEach(function(){
+        window.app = makeFakeApp();
+
         $cardView = makeViewSpy('CardView', ['render', 'remove']);
         spyOn(window.NB, 'CardView').andReturn($cardView);
 
@@ -14,6 +16,10 @@ describe('StopView', function(){
         view = new window.NB.StopView({
             model: model
         });
+    });
+
+    afterEach(function(){
+        delete window.app;
     });
 
     it('should listen to model events', function(){
@@ -59,6 +65,37 @@ describe('StopView', function(){
                 expect(title.innerHTML).toContain('JOHN at CHARLTON');
             });
 
+            it('should not display more stops button by default', function(){
+                var btn = view.el.querySelector('.additional-stops');
+
+                expect(btn).toBeNull();
+            });
+
+            describe('hasAdditionalStops', function(){
+                beforeEach(function(){
+                    view.model.set('hasAdditionalStops', true);
+
+                    view.remove();
+                    // Put in Sandbox in order to test events firing.
+                    window.Sandbox.appendChild(view.render().el);
+                });
+
+                it('should display a button if there are more stops', function(){
+                    var btn = view.el.querySelector('.additional-stops');
+
+                    expect(btn).not.toBeNull();
+                });
+
+                it('should navigate to the search page', function(){
+                    view.$('.additional-stops button').trigger('click');
+
+                    var router = window.app.getRouter();
+
+                    expect(router.navigate).toHaveBeenCalledWith(
+                        'search/JOHN%20at%20CHARLTON', {trigger:true});
+                });
+            }); // describe('hasAdditionalStops')
+
             describe('remove', function(){
                 beforeEach(function(){
                     view.remove();
@@ -70,7 +107,6 @@ describe('StopView', function(){
                 });
 
                 it('should call remove on subviews', function(){
-                    //debugger;
                     expect($cardView.remove).toHaveBeenCalled();
                 });
             }); // describe('remove')
