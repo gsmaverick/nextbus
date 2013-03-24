@@ -1,11 +1,17 @@
 import time, urllib2, os, re
 from flask import Flask, jsonify, Response, render_template, json, send_from_directory, request
 from api import search, stop, services
+from utils import makeJSONResponse
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
+    """
+        Main entry point of the application for mobile and desktop users.  based
+        on what browser the user has decides which version of the site to serve
+        up to the user.
+    """
     user_agent = request.headers.get('User-Agent')
     isMobile = re.search('android|ipad|iphone', user_agent, re.IGNORECASE)
     tmpl = 'index' if isMobile else 'marketing'
@@ -23,10 +29,6 @@ def show_help():
 
 @app.route('/about', methods=['GET'])
 def show_about():
-    """
-        Main entry point of the application for mobile and desktop users.  We detect
-        if a mobile phone is in use and serve up the mobile version instead.
-    """
     return render_template('about.html', header=True)
 
 @app.route('/send_to_phone', methods=['POST'])
@@ -42,8 +44,7 @@ def send_to_phone():
     number = request.form['number'].strip('()-')
     result = services.sendToNumber(number)
 
-    resp = Response(json.dumps(result), status=200, mimetype='application/json')
-    return resp
+    return makeJSONResponse(json.dumps(result))
 
 @app.route('/apple-touch-icon-precomposed.png')
 @app.route('/apple-touch-icon.png')
@@ -93,7 +94,7 @@ def show_stop(stop_id):
     stop_info = stop.getStopInformation(stop_id)
     additional_stops = stop.hasMultipleRoutes(stop_id, stop_info)
 
-    result = {
+    result = json.dumps({
         'info': {
             'id': stop_id,
             'stop_code': stop_info['code'],
@@ -105,10 +106,9 @@ def show_stop(stop_id):
             'hasAdditionalStops': additional_stops
         },
         'routes': stop_times
-    }
+    })
 
-    resp = Response(json.dumps(result), status=200, mimetype='application/json')
-    return resp
+    return makeJSONResponse(result)
 
 @app.route('/api/search/text/<string:query>', methods=['GET', 'POST'])
 def text_search(query):
@@ -137,16 +137,15 @@ def text_search(query):
     else:
         searchResults = search.searchByStopName(query, 10)
 
-    result = {
+    result = json.dumps({
         'info': {
             'status': 200,
             'results': len(searchResults)
         },
         'results': searchResults
-    }
+    })
 
-    resp = Response(json.dumps(result), status=200, mimetype='application/json')
-    return resp
+    return makeJSONResponse(result, {'days': 7})
 
 @app.route('/api/search/geo/<string:query>', methods=['GET', 'POST'])
 def geo_search(query):
@@ -170,16 +169,15 @@ def geo_search(query):
     query = urllib2.unquote(query).split('|')
     searchResults = search.searchByLatLon(query[0], query[1], 10)
 
-    result = {
+    result = json.dumps({
         'info': {
             'status': 200,
             'results': len(searchResults)
         },
         'results': searchResults
-    }
+    })
 
-    resp = Response(json.dumps(result), status=200, mimetype='application/json')
-    return resp
+    return makeJSONResponse(result, {'days': 7})
 
 if __name__ == '__main__':
     try:
