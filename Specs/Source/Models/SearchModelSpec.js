@@ -12,7 +12,7 @@ describe('SearchModel', function(){
 
     describe('querying', function(){
         beforeEach(function(){
-            model.set('query', 'university');
+            model.set('query', 'UniverSity');
 
             spyOn(window, 'decodeURIComponent').andCallFake(function(text){
                 return text;

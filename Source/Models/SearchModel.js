@@ -19,7 +19,7 @@ window.NB.SearchModel = Backbone.Model.extend({
         var query = decodeURIComponent(this.get('query')),
             ext = query.indexOf('|') !== -1 ? 'geo' : 'text';
 
-        return [this.urlRoot, ext, this.get('query')].join('/');
+        return [this.urlRoot, ext, this.get('query').toLowerCase()].join('/');
     },
 
     parse: function(response){
