@@ -137,7 +137,7 @@
             success: ajaxSuccess,
             error: ajaxError,
             type: 'POST',
-            url: '/send_to_phone'
+            url: '/api/send_to_phone'
         });
     });
 })();
