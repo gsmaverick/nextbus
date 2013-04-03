@@ -6,17 +6,19 @@ HSR on their [open data site](http://www.hamilton.ca/ProjectsInitiatives/OpenDat
 
 ## Setup Development Environment
 
+*Note: These instructions are for OSX and some commands vary on other platforms.*
+
 Start by setting up a virtual environment for this project:
 
     virtualenv venv --distribute
 
 You must activate the virtual environment in every terminal session:
 
-    venv\Scripts\activate
+    source venv/bin/activate
 
 Now install all the dependencies for Bus Ticker and freeze them:
 
-    pip install Flask SQLAlchemy pytz twilio
+    pip install Flask SQLAlchemy pytz twilio psycopg2
     pip freeze > requirements.txt
 
 Then install all the gems we need to generate static assets:
@@ -32,7 +34,7 @@ development.  To start the server:
 
 Now build and watch the static assets:
 
-    ruby bin\guard
+    bin/guard
 
 
 ## Deploy On Heroku
