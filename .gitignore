@@ -3,3 +3,5 @@ bin/
 venv/
 *.py[cod]
 .env
+gtfs/
+.DS_Store
