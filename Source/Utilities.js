@@ -15,5 +15,16 @@ window.NB.Utilities = {
         var routeNum = '0' + num;
 
         return routeNum.slice(-2);
+    },
+
+    /**
+     * @returns {String} Properly formatted title string for the stop that
+     * includes the stop code if one exists.
+     */
+    stopTitle: function(code, name){
+        var title = [name];
+
+        if (code) title.unshift('#' + code);
+        return title.join(' - ');
     }
 }

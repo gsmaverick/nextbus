@@ -38,15 +38,24 @@ describe('StopModel', function(){
             expect(model.get('routes').length).toBe(3);
             expect(model.get('hasAdditionalStops')).toBeFalsy();
         });
+    }); // describe('fetching')
+
+    describe('public methods', function(){
+        beforeEach(function(){
+            model.set('id', 2097);
+            model.fetch();
+
+            var request = mostRecentAjaxRequest();
+
+            request.response(TestResponses.models.stop.success);
+        });
 
         it('should return an object for jsonifyForFavourites', function(){
-            request.response(TestResponses.models.stop.success);
-
             var result = model.jsonifyForFavourites();
 
             expect(result.id).toEqual(1785);
             expect(result.name).toEqual('JOHN at CHARLTON');
             expect(result.routes).toEqual([21, 35, 33]);
         });
-    }); // describe('fetching')
+    }); // describe('public methods')
 }); // describe('StopModel')

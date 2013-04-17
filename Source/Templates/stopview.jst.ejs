@@ -1,4 +1,6 @@
-<h2 class="stop-title">#<%= get('code') %>: <%= get('name') %></h2>
+<h2 class="stop-title">
+    <%= window.NB.Utilities.stopTitle(get('code'), get('name')) %>
+</h2>
 
 <div class="card"></div>
 
@@ -14,5 +16,5 @@
 
 <!--<div class="map">
     <h3>Stop Map</h3>
-    <img src="<%= googleMapsImage_() %>" />
+    <img src="" />
 </div>-->

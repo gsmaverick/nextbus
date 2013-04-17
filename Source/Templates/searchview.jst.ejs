@@ -4,12 +4,12 @@
 
         <div class="box">
             <span class="name">
-                #<%= result['stop_code'] %> - <%= result['stop_name'] %>
+                <%= window.NB.Utilities.stopTitle(result['stop_code'], result['stop_name']) %>
             </span>
 
             <div class="numbers">
                 <% _.each(result['routes'], function(route){ %>
-                    <span class="number route-<%= window.NB.Utilities.padRouteNumber(route) %>">
+                    <span class="number route-<%= result['id'].indexOf('go') !== -1 ? 'go-' : '' %><%= window.NB.Utilities.padRouteNumber(route) %>">
                         <%= window.NB.Utilities.padRouteNumber(route) %>
                     </span>
                 <% }); %>
