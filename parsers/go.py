@@ -43,7 +43,7 @@ class GO(TransitBase):
 
             route_details[number] = routes[trip['route_id']]['route_color']
 
-        with open(dirname + '/Source/Sass/go.scss', 'wb') as f:
+        with open(dirname + '/Source/Sass/application/go.scss', 'wb') as f:
             for key, value in route_details.iteritems():
                 sassRule =  '''
 .route-go-{0} {{
