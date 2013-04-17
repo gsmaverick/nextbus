@@ -1,4 +1,4 @@
-import utils
+import utils, urllib2, re
 from api import *
 from flask import json, request
 

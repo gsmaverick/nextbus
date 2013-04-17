@@ -58,7 +58,7 @@ def searchByStopName(name, num=25):
         schema.stops.c.name.op('~*')(match_expr)).limit(num)
     result = conn.execute(query).fetchall()
 
-    return [_stopNameResultDict(s, conn) for s in result]
+    return filter(None, [_stopNameResultDict(s, conn) for s in result])
 
 def _createRegexFromQuery(query):
     """
@@ -95,11 +95,16 @@ def _stopNameResultDict(stop, conn):
 
         :param stop: Stop result row from the database query.
     """
+    routes = _routesForStopId(stop['id'], conn)
+
+    if len(routes) is 0:
+        return None
+
     return {
         'id': stop['id'],
         'stop_code': stop['code'],
         'stop_name': stop['name'],
-        'routes': _routesForStopId(stop['id'], conn)
+        'routes': routes
     }
 
 def _routesForStopId(stop_id, conn):
@@ -112,7 +117,7 @@ def _routesForStopId(stop_id, conn):
     routes_query = select(
         [schema.stop_times.c.route_number],
         schema.stop_times.c.stop_id == stop_id
-    ).distinct(schema.stop_times.c.route_number)
+    ).distinct(schema.stop_times.c.route_name)
     result = conn.execute(routes_query).fetchall()
 
-    return [r[0] for r in result]
+    return [''.join(i for i in r[0] if i.isdigit()) for r in result]

@@ -13,7 +13,7 @@ routes = [
     ('/api/search/geo/<string:query>', 'apis.geo_search', apis.geo_search, {'methods': ['GET', 'POST']}),
     ('/api/search/text/<string:query>', 'apis.text_search', apis.text_search, {'methods': ['GET', 'POST']}),
     ('/api/send_to_phone', 'apis.send_to_phone', apis.send_to_phone, {'methods': ['POST']}),
-    ('/api/stops/<int:stop_id>', 'apis.show_stop', apis.show_stop),
+    ('/api/stops/<string:stop_id>', 'apis.show_stop', apis.show_stop),
 
     ('/apple-touch-icon-precomposed.png', 'statics.icon', statics.icon),
     ('/apple-touch-icon.png', 'statics.icon', statics.icon),
